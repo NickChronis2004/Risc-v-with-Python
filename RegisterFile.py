@@ -1,5 +1,3 @@
-# Complete Register File implementation
-# Contains both Register and RegisterFile classes
 
 class Register:
     """
@@ -124,6 +122,37 @@ class RegisterFile:
             return self.registers[reg_num].write(value)
         return False
     
+    def reset_all(self):
+        """Reset all registers to 0 (except x0 which stays 0)"""
+        for register in self.registers:
+            register.reset()
+    
+    def get_register_info(self, reg_num):
+        """Get complete register information"""
+        if 0 <= reg_num < 16:
+            reg = self.registers[reg_num]
+            return (reg.name, reg.abi_name, reg.purpose)
+        return ("INVALID", "INVALID", "Invalid register")
+    
+    def get_register_by_name(self, name):
+        """Get register number by name (x0-x15) or ABI name (zero, ra, etc.)"""
+        name = name.lower()
+        
+        # Direct register names (x0-x15)
+        if name.startswith('x') and name[1:].isdigit():
+            reg_num = int(name[1:])
+            if 0 <= reg_num < 16:
+                return reg_num
+        
+        # ABI names
+        abi_map = {
+            'zero': 0, 'ra': 1, 'sp': 2, 'gp': 3, 'tp': 4,
+            't0': 5, 't1': 6, 't2': 7, 's0': 8, 's1': 9,
+            'a0': 10, 'a1': 11, 'a2': 12, 'a3': 13, 'a4': 14, 'a7': 15
+        }
+        
+        return abi_map.get(name, -1)
+    
     def display_registers_rich(self):
         """Display registers using Rich library for beautiful terminal output"""
         try:
@@ -185,7 +214,7 @@ class RegisterFile:
             console.print(table)
             
         except ImportError:
-            print("\n[ERROR] Rich library not installed!")
+            print("\n[WARNING] Rich library not installed!")
             print("Install with: pip install rich")
             print("Falling back to basic display...\n")
             self.display_registers()
@@ -255,80 +284,58 @@ class RegisterFile:
         
         print("└" + "─" * 75 + "┘")
     
-    def get_register_info(self, reg_num):
-        """Get complete register information"""
-        if 0 <= reg_num < 16:
-            reg = self.registers[reg_num]
-            return (reg.name, reg.abi_name, reg.purpose)
-        return ("INVALID", "INVALID", "Invalid register")
+    def display_summary(self):
+        """Display a summary of register states"""
+        print("\n" + "="*60)
+        print("📊 REGISTER FILE SUMMARY")
+        print("="*60)
+        
+        non_zero_regs = []
+        for i, reg in enumerate(self.registers):
+            value = reg.read()
+            if value != 0:
+                non_zero_regs.append((i, reg.name, reg.abi_name, value))
+        
+        if non_zero_regs:
+            print(f"\n📍 Non-zero registers ({len(non_zero_regs)}):")
+            for reg_num, name, abi_name, value in non_zero_regs:
+                print(f"   {name}({abi_name}): 0x{value:04X} ({value})")
+        else:
+            print("\n📍 All registers are zero")
+        
+        print(f"\n📊 Total registers: 16")
+        print(f"📊 Active registers: {len(non_zero_regs)}")
+        print("="*60)
 
 
-def main_test_rf():
-    """Test the RegisterFile functionality"""
-    print("=== Testing RegisterFile ===\n")
+# Κύρια συνάρτηση για demo
+def main():
+    """Demo του RegisterFile"""
+    print("RegisterFile Demo - RISC-V 16-bit Processor")
+    print("=" * 45)
     
-    # Create register file
     rf = RegisterFile()
     
-    print("1. Initial state (all zeros) - Rich Display:")
-    rf.display_registers_rich()
+    print("\n1. Αρχική κατάσταση:")
+    rf.display_registers()
     
-    print("\n2. Testing writes to various registers:")
+    print("\n2. Γράφοντας σε μερικά registers...")
+    rf.write(1, 0x1234)   # ra
+    rf.write(2, 0x8000)   # sp  
+    rf.write(10, 42)      # a0
+    rf.write(11, 100)     # a1
     
-    # Test writing to different register types
-    rf.write(1, 0x1000)    # ra (return address)
-    rf.write(2, 0x2000)    # sp (stack pointer)  
-    rf.write(10, 42)       # a0 (function arg/return)
-    rf.write(11, 100)      # a1 (function arg/return)
-    rf.write(5, 0xFFFF)    # t0 (temporary)
+    print("\n3. Κατάσταση μετά τις εγγραφές:")
+    rf.display_registers()
     
-    print("   - x1 (ra) = 0x1000")
-    print("   - x2 (sp) = 0x2000") 
-    print("   - x10 (a0) = 42")
-    print("   - x11 (a1) = 100")
-    print("   - x5 (t0) = 0xFFFF")
+    print("\n4. Summary:")
+    rf.display_summary()
     
-    rf.display_registers_rich()
-    
-    print("\n3. Testing x0 protection (should fail):")
-    success = rf.write(0, 123)
-    print(f"   - Trying to write 123 to x0: {'FAILED' if not success else 'SUCCESS'}")
-    print(f"   - x0 value: {rf.read(0)} (should be 0)")
-    
-    print("\n4. Testing boundary conditions:")
-    
-    # Test invalid register numbers
-    print(f"   - Reading x16 (invalid): {rf.read(16)}")
-    print(f"   - Writing to x20 (invalid): {rf.write(20, 999)}")
-    
-    # Test 16-bit overflow
-    rf.write(7, 0x10000)  # Should wrap to 0x0000
-    print(f"   - Writing 0x10000 to x7, result: 0x{rf.read(7):04X}")
-    
-    print("\n5. Final state with Rich display:")
-    rf.display_registers_rich()
-    
-    print("\n6. Register ABI Information:")
-    for i in [0, 1, 2, 10, 11, 15]:
-        reg_name, abi_name, purpose = rf.get_register_info(i)
-        print(f"   - {reg_name} ({abi_name}): {purpose}")
-    
-    print("\n=== RegisterFile Test Complete ===")
-    
-    # Ask user which display they prefer
-    print("\nWhich display do you prefer?")
-    print("1. Rich (colorful)")
-    print("2. Basic (ASCII art)")
-    choice = input("Enter choice (1/2): ")
-    
-    if choice == "1":
-        print("\n--- Rich Display ---")
-        rf.display_registers_rich()
-    else:
-        print("\n--- Basic Display ---")
-        rf.display_registers()
+    print("\n5. Test x0 protection:")
+    success = rf.write(0, 999)
+    print(f"   Trying to write 999 to x0: {'FAILED' if not success else 'SUCCESS'}")
+    print(f"   x0 value: {rf.read(0)}")
 
 
-# Run the test
 if __name__ == "__main__":
-    main_test_rf()
+    main()
