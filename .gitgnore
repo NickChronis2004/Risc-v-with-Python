@@ -1,0 +1,22 @@
+
+# Δημιούργησε .gitignore
+echo "# Python" > .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "*.pyo" >> .gitignore
+echo "*.pyd" >> .gitignore
+echo ".Python" >> .gitignore
+echo "env/" >> .gitignore
+echo "venv/" >> .gitignore
+echo ".venv/" >> .gitignore
+echo "*.egg-info/" >> .gitignore
+echo "dist/" >> .gitignore
+echo "build/" >> .gitignore
+echo "" >> .gitignore
+echo "# IDE" >> .gitignore
+echo ".vscode/" >> .gitignore
+echo ".idea/" >> .gitignore
+echo "" >> .gitignore
+echo "# OS" >> .gitignore
+echo ".DS_Store" >> .gitignore
+echo "Thumbs.db" >> .gitignore
