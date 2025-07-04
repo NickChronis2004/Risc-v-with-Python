@@ -8,6 +8,9 @@ Comprehensive Unit Tests για Register και RegisterFile
 - Edge cases και error conditions
 - Detailed error reporting για debugging
 """
+import sys
+
+sys.path.append('..')
 
 from RegisterFile import Register, RegisterFile  
 import unittest
