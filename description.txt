@@ -207,12 +207,3 @@ Optional:
 
 CustomTkinter (για GUI)
 Rich (για beautiful terminal output)
-
-
-💡 Tips για Success
-
-Start Simple: Υλοποίησε την πιο απλή έκδοση πρώτα
-Test Early: Γράψε tests από την αρχή
-Incremental: Ένα component τη φορά
-Debug Tools: Print statements και logging
-Ask Questions: Όταν κολλήσεις, ρώτα!
