@@ -1,0 +1,103 @@
+
+🔍 Τα Κύρια Προβλήματα & Λύσεις:
+Πρόβλημα 1: "Πώς σπάω τη γραμμή;"
+assembly"  add   x1  ,   x2 ,  x3  # comment"
+Σκέψη:
+
+Αφαίρεση noise (comments, spaces)
+Ομοιόμορφο format (κόμματα → spaces)
+Split σε tokens
+
+Λύση:
+pythonline.split('#')[0]          # Remove comments
+line.replace(',', ' ')      # Uniform separators
+line.split()               # Smart whitespace handling
+Πρόβλημα 2: "Τι κάνω με τα labels;"
+assemblymain: add x1, x2, x3
+beq x1, x2, main
+Σκέψη:
+
+Labels είναι addresses
+Χρειάζομαι two passes:
+
+Pass 1: Μάζεψε τα labels
+Pass 2: Αντικατάστησέ τα
+
+
+
+Λύση:
+python# Pass 1: Store labels
+labels["main"] = 0
+
+# Pass 2: Resolve references  
+offset = labels["main"] - current_address - 1
+Πρόβλημα 3: "Πώς κωδικοποιώ διαφορετικούς τύπους εντολών;"
+Σκέψη:
+
+Κάθε τύπος έχει διαφορετικό format
+Χρειάζομαι classification system
+Χωριστή encoding logic για καθένα
+
+Λύση:
+python# Step 1: Classify
+inst_type = get_instruction_type("ADD")  # → "R"
+
+# Step 2: Route to appropriate encoder
+if inst_type == 'R':
+    return _encode_r_type(opcode, operands)
+elif inst_type == 'I':
+    return _encode_i_type(opcode, operands)
+
+🧠 Η Σκεπτική Διαδικασία:
+1. Top-Down Design:
+assemble_file()
+    ↓
+_first_pass() + _second_pass()
+    ↓
+parse_instruction_line() + encode_instruction()
+    ↓
+_encode_r_type(), _encode_i_type(), etc.
+2. Separation of Concerns:
+
+Parsing ≠ Encoding
+Label handling ≠ Instruction processing
+Error handling σε κάθε επίπεδο
+
+3. Data-Driven Design:
+python# Αντί για giant if-else:
+opcodes = {'ADD': 0x0, 'SUB': 0x1, ...}
+register_map = {'x0': 0, 'ra': 1, ...}
+
+🎯 Κρίσιμες Αποφάσεις που πήραμε:
+Α. Two-Pass Architecture
+Γιατί; Labels δημιουργούν forward references:
+assemblybeq x1, x2, end    # Δεν ξέρω που είναι το "end" ακόμα!
+add x1, x1, 1
+end: halt          # Τώρα το βρήκα!
+Β. Flexible Register Naming
+pythonregister_map = {'x1': 1, 'ra': 1}  # Both map to register 1
+Γιατί; Διαφορετικοί προγραμματιστές χρησιμοποιούν διαφορετικά conventions.
+Γ. Robust Error Handling
+pythontry:
+    rd = self.parse_register(operands[0])
+except ValueError as e:
+    print(f"Error on line {line_num}: {e}")
+Γιατί; Assembly debugging είναι δύσκολο - χρειαζόμαστε καλά error messages.
+
+🚀 Το Pattern που ακολουθήσαμε:
+1. Clean Input:
+python"  ADD  x1, x2,x3 # comment" → "ADD x1 x2 x3"
+2. Parse Structure:
+python"ADD x1 x2 x3" → {'instruction': 'ADD', 'operands': ['x1', 'x2', 'x3']}
+3. Classify & Validate:
+python'ADD' → 'R-type' → validate_3_operands() → parse_registers()
+4. Encode:
+pythonopcode=0x0, rd=1, rs1=2, rs2=3 → (0x0<<12)|(1<<8)|(2<<4)|3 → 0x0123
+
+💡 Τι μάθαμε;
+
+Divide & Conquer - Μεγάλα προβλήματα → μικρά κομμάτια
+Data Structures Matter - Σωστά dictionaries απλοποιούν τα πάντα
+Error Handling is Critical - Debugging assembly χωρίς καλά errors = nightmare
+Test Early & Often - Κάθε function ξεχωριστά πρώτα
+Think in Layers - Parsing layer, Logic layer, Encoding layer
