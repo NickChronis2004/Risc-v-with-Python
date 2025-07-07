@@ -1,0 +1,235 @@
+{
+  "timestamp": "20250707_121053",
+  "test_suite": "Real-World Scenarios",
+  "summary": {
+    "total_scenarios": 4,
+    "passed_scenarios": 0,
+    "total_duration": 0.014224767684936523,
+    "overall_success_rate": 0.0
+  },
+  "scenarios": [
+    {
+      "name": "Embedded System Controller",
+      "success": false,
+      "duration": 0.006055355072021484,
+      "metrics": {
+        "execution_cycles": 43,
+        "sensor_readings": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "actuator_1_state": 0,
+        "actuator_2_state": 0,
+        "sensor_sum": 0,
+        "memory_operations": 13,
+        "instruction_count": 27
+      },
+      "issues": [
+        "Sensor sum calculation incorrect: expected 26, got 0"
+      ],
+      "recommendations": [
+        "Consider implementing proper inverse actuator control"
+      ]
+    },
+    {
+      "name": "Computer Architecture Lab",
+      "success": false,
+      "duration": 0.0023326873779296875,
+      "metrics": {
+        "completed_labs": 2,
+        "total_labs": 3,
+        "total_execution_cycles": 16,
+        "average_cycles_per_lab": 8.0,
+        "lab_results": [
+          {
+            "lab_number": 1,
+            "cycles": 7,
+            "instructions": 7,
+            "final_registers": [
+              0,
+              15,
+              7,
+              22,
+              8,
+              7,
+              15,
+              0
+            ],
+            "memory_state": []
+          },
+          {
+            "lab_number": 2,
+            "cycles": 9,
+            "instructions": 9,
+            "final_registers": [
+              0,
+              10,
+              4,
+              10,
+              4,
+              14,
+              0,
+              0
+            ],
+            "memory_state": [
+              [
+                4096,
+                10
+              ],
+              [
+                4097,
+                4
+              ],
+              [
+                4098,
+                14
+              ]
+            ]
+          }
+        ]
+      },
+      "issues": [
+        "Lab 3 execution failed",
+        "Some educational programs failed to complete",
+        "Lab 2: Memory operations learning objective not met"
+      ],
+      "recommendations": []
+    },
+    {
+      "name": "Research Platform",
+      "success": false,
+      "duration": 0.0041158199310302734,
+      "metrics": {
+        "completed_workloads": 2,
+        "total_workloads": 3,
+        "average_cpi": 1.0,
+        "instruction_coverage": 0.75,
+        "workload_details": [
+          {
+            "name": "Instruction Set Coverage",
+            "execution_time": 0.00011658668518066406,
+            "cycles": 17,
+            "instructions": 17,
+            "cpi": 1.0,
+            "instruction_mix": {
+              "r_type_count": 5,
+              "i_type_count": 8,
+              "s_type_count": 1,
+              "b_type_count": 1,
+              "j_type_count": 1,
+              "special_count": 1,
+              "branches_taken": 1,
+              "branches_not_taken": 0,
+              "memory_reads": 1,
+              "memory_writes": 1
+            },
+            "memory_stats": {
+              "total_accesses": 2,
+              "reads": 1,
+              "writes": 1,
+              "size": 128,
+              "base_address": 4096
+            },
+            "alu_operations": 13,
+            "branch_efficiency": 0.5
+          },
+          {
+            "name": "Pipeline Stress Test",
+            "execution_time": 6.890296936035156e-05,
+            "cycles": 9,
+            "instructions": 9,
+            "cpi": 1.0,
+            "instruction_mix": {
+              "r_type_count": 4,
+              "i_type_count": 3,
+              "s_type_count": 1,
+              "b_type_count": 0,
+              "j_type_count": 0,
+              "special_count": 1,
+              "branches_taken": 0,
+              "branches_not_taken": 0,
+              "memory_reads": 1,
+              "memory_writes": 1
+            },
+            "memory_stats": {
+              "total_accesses": 4,
+              "reads": 2,
+              "writes": 2,
+              "size": 128,
+              "base_address": 4096
+            },
+            "alu_operations": 6,
+            "branch_efficiency": 1.0
+          }
+        ],
+        "performance_summary": {
+          "min_cpi": 1.0,
+          "max_cpi": 1.0,
+          "total_cycles": 26,
+          "total_instructions": 26
+        }
+      },
+      "issues": [
+        "Research workload 'Memory Hierarchy Test' execution failed",
+        "Some research workloads failed - limits research capability"
+      ],
+      "recommendations": [
+        "Limited instruction set coverage - may not suit all research needs",
+        "Research platform needs improvements for serious academic use"
+      ]
+    },
+    {
+      "name": "Production Deployment",
+      "success": false,
+      "duration": 0.0017209053039550781,
+      "metrics": {
+        "stress_tests_completed": 3,
+        "total_stress_tests": 3,
+        "average_completion_rate": 0.03166666666666667,
+        "average_throughput": 124703.0362083378,
+        "reliability_score": 0.9,
+        "test_details": [
+          {
+            "name": "Long Running Process",
+            "execution_time": 0.00033855438232421875,
+            "cycles_executed": 15,
+            "max_cycles": 1000,
+            "completion_rate": 0.015,
+            "memory_efficiency": 1.0,
+            "error_rate": 0.0,
+            "throughput": 44306.028169014084
+          },
+          {
+            "name": "Memory Intensive",
+            "execution_time": 9.799003601074219e-05,
+            "cycles_executed": 15,
+            "max_cycles": 500,
+            "completion_rate": 0.03,
+            "memory_efficiency": 1.0,
+            "error_rate": 0.0,
+            "throughput": 153076.78832116787
+          },
+          {
+            "name": "Control Flow Heavy",
+            "execution_time": 8.487701416015625e-05,
+            "cycles_executed": 15,
+            "max_cycles": 300,
+            "completion_rate": 0.05,
+            "memory_efficiency": 1.0,
+            "error_rate": 0.0,
+            "throughput": 176726.29213483146
+          }
+        ],
+        "production_score": 0.0
+      },
+      "issues": [
+        "Low completion rate indicates stability issues"
+      ],
+      "recommendations": [
+        "Good production candidate - monitor closely in initial deployment"
+      ]
+    }
+  ]
+}

@@ -126,18 +126,27 @@ class InstructionDecoder:
         rs1 = (instruction >> 4) & 0xF   # Bits 7-4:  Source register 1
         imm = instruction & 0xF          # Bits 3-0:  Immediate value (4-bit)
         
-        # Handle signed immediate (4-bit signed: -8 to +7)
-        if imm & 0x8:  # If MSB is 1, it's negative
-            signed_imm = imm - 16
+        # 🎯 Context-aware immediate handling
+        inst_name = inst_info['name']
+
+        # Instructions that need SIGNED immediates (offsets)
+        if inst_name in ['LW']:  # Load instructions need signed offsets
+            # Handle signed immediate (4-bit signed: -8 to +7)
+            if imm & 0x8:  # If MSB is 1, it's negative
+                signed_imm = imm - 16
+            else:
+                signed_imm = imm
+            final_imm = signed_imm
         else:
-            signed_imm = imm
-        
+            # Instructions that use UNSIGNED immediates (ADDI, ANDI, ORI)
+            final_imm = imm  # Keep as unsigned (0-15)
+            
         # Different assembly format for LW
         if inst_info["name"] == "LW":
-            assembly = f"lw x{rd}, {signed_imm}(x{rs1})"
-            offset = signed_imm
+            assembly = f"lw x{rd}, {final_imm}(x{rs1})"
+            offset = final_imm
         else:
-            assembly = f"{inst_info['name'].lower()} x{rd}, x{rs1}, {signed_imm}"
+            assembly = f"{inst_info['name'].lower()} x{rd}, x{rs1}, {final_imm}"
             offset = None
         
         return {
@@ -148,13 +157,13 @@ class InstructionDecoder:
             "rd": rd,
             "rs1": rs1,
             "rs2": None,
-            "immediate": signed_imm,
+            "immediate": final_imm,
             "offset": offset,
             "raw_instruction": instruction,
             "assembly": assembly,
             "valid": True
         }
-    
+        
     def _decode_s_type(self, instruction: int, opcode: int, inst_info: Dict) -> Dict[str, Any]:
         """
         Decode S-Type instruction: [opcode][rs2][rs1][imm]

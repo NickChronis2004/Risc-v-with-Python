@@ -203,14 +203,9 @@ class RiscVProcessor:
         
         # For ADDI, treat immediate as unsigned for positive values
         # This fixes the 4-bit signed issue where 10 becomes -6
-        if decoded["instruction_name"] == "ADDI" and immediate < 0:
-            # Convert back to positive if it was supposed to be positive
-            # Check if this was originally a positive 4-bit value
-            raw_imm = decoded["raw_instruction"] & 0xF
-            if raw_imm <= 7:  # 0-7 are positive in both signed and unsigned
-                immediate = raw_imm
-            else:  # 8-15 should be treated as 8-15, not -8 to -1
-                immediate = raw_imm
+        # Read source register and immediate
+        rs1_value = self.register_file.read(decoded["rs1"])
+        immediate = decoded["immediate"]
         
         # Perform ALU operation
         alu_result = self.alu.execute(rs1_value, immediate, control_signals["alu_operation"])

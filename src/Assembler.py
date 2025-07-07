@@ -263,11 +263,25 @@ class RiscVAssembler:
         raise ValueError(f"Unknown register: {reg_str}")
     
     def _parse_immediate(self, imm_str: str) -> int:
-        """Μετατρέπει immediate value"""
-        if imm_str.startswith('0X'):
-            return int(imm_str, 16) & 0xF  # 4-bit immediate
-        else:
-            return int(imm_str) & 0xF
+        """Μετατρέπει immediate value με proper sign handling"""
+        try:
+            if imm_str.startswith('0x'):
+                immediate = int(imm_str, 16) & 0xF
+            else:
+                immediate = int(imm_str)
+                
+                # Handle negative numbers for sign extension
+                if immediate < 0:
+                    # Convert to 4-bit two's complement
+                    immediate = (immediate + 16) & 0xF
+                else:
+                    # Positive numbers - just mask to 4-bit
+                    immediate = immediate & 0xF
+                    
+            return immediate
+            
+        except ValueError:
+            raise ValueError(f"Invalid immediate value: {imm_str}")
     
     def _parse_memory_operand(self, operand: str) -> Tuple[int, int]:
         """Αναλύει memory operand όπως: 4(x2) ή (x2)"""
