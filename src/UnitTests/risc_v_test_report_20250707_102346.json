@@ -1,0 +1,156 @@
+{
+  "timestamp": "20250707_102346",
+  "summary": {
+    "total_tests": 14,
+    "passed_tests": 1,
+    "failed_tests": 13,
+    "success_rate": 7.142857142857142,
+    "total_duration": 0.16800642013549805
+  },
+  "categories": {
+    "unit_tests": {
+      "total": 4,
+      "passed": 0,
+      "failed": 4,
+      "success_rate": 0.0
+    },
+    "integration_tests": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "success_rate": 0.0
+    },
+    "performance_tests": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3,
+      "success_rate": 0.0
+    },
+    "gui_tests": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "success_rate": 50.0
+    },
+    "workflow_tests": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "success_rate": 0.0
+    }
+  },
+  "detailed_results": [
+    {
+      "name": "RegisterFile Tests",
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/RF_Tests.py",
+      "timestamp": "2025-07-07T10:23:46.365174"
+    },
+    {
+      "name": "ALU Tests",
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/ALU_tests.py",
+      "timestamp": "2025-07-07T10:23:46.365207"
+    },
+    {
+      "name": "Memory Tests",
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/Memory_tests.py",
+      "timestamp": "2025-07-07T10:23:46.365228"
+    },
+    {
+      "name": "Assembler Tests",
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/AssemblerTest.py",
+      "timestamp": "2025-07-07T10:23:46.365245"
+    },
+    {
+      "name": "Complete Processor Workflow",
+      "passed": false,
+      "duration": 0.0001823902130126953,
+      "details": "No module named 'MainCPU'",
+      "error": "No module named 'MainCPU'",
+      "timestamp": "2025-07-07T10:23:46.365438"
+    },
+    {
+      "name": "Assembler-Processor Pipeline",
+      "passed": false,
+      "duration": 0.00016427040100097656,
+      "details": "No module named 'MainCPU'",
+      "error": "No module named 'MainCPU'",
+      "timestamp": "2025-07-07T10:23:46.365615"
+    },
+    {
+      "name": "Memory System Integration",
+      "passed": false,
+      "duration": 0.00015854835510253906,
+      "details": "No module named 'Memory'",
+      "error": "No module named 'Memory'",
+      "timestamp": "2025-07-07T10:23:46.365782"
+    },
+    {
+      "name": "Execution Speed Benchmark",
+      "passed": false,
+      "duration": 0.0001609325408935547,
+      "details": "No module named 'MainCPU'",
+      "error": "No module named 'MainCPU'",
+      "timestamp": "2025-07-07T10:23:46.365953"
+    },
+    {
+      "name": "Memory Performance",
+      "passed": false,
+      "duration": 0.00016045570373535156,
+      "details": "No module named 'Memory'",
+      "error": "No module named 'Memory'",
+      "timestamp": "2025-07-07T10:23:46.366122"
+    },
+    {
+      "name": "Assembly Performance",
+      "passed": false,
+      "duration": 0.00015735626220703125,
+      "details": "No module named 'Assembler'",
+      "error": "No module named 'Assembler'",
+      "timestamp": "2025-07-07T10:23:46.366287"
+    },
+    {
+      "name": "GUI Components",
+      "passed": true,
+      "duration": 0.00015783309936523438,
+      "details": "Components: tkinter=True, customtkinter=True, main_gui=False",
+      "error": null,
+      "timestamp": "2025-07-07T10:23:46.366456"
+    },
+    {
+      "name": "GUI Workflow",
+      "passed": false,
+      "duration": 0.06020236015319824,
+      "details": "GUI initialization failed",
+      "error": null,
+      "timestamp": "2025-07-07T10:23:46.426668"
+    },
+    {
+      "name": "Development Workflow",
+      "passed": false,
+      "duration": 0.0001990795135498047,
+      "details": "No module named 'MainCPU'",
+      "error": "No module named 'MainCPU'",
+      "timestamp": "2025-07-07T10:23:46.427983"
+    },
+    {
+      "name": "Exception Workflow",
+      "passed": false,
+      "duration": 0.00017070770263671875,
+      "details": "No module named 'MainCPU'",
+      "error": "No module named 'MainCPU'",
+      "timestamp": "2025-07-07T10:23:46.428165"
+    }
+  ]
+}

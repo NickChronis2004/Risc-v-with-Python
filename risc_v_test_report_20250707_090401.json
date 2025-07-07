@@ -1,0 +1,156 @@
+{
+  "timestamp": "20250707_090401",
+  "summary": {
+    "total_tests": 14,
+    "passed_tests": 6,
+    "failed_tests": 8,
+    "success_rate": 42.857142857142854,
+    "total_duration": 0.4889814853668213
+  },
+  "categories": {
+    "unit_tests": {
+      "total": 4,
+      "passed": 0,
+      "failed": 4,
+      "success_rate": 0.0
+    },
+    "integration_tests": {
+      "total": 3,
+      "passed": 1,
+      "failed": 2,
+      "success_rate": 33.33333333333333
+    },
+    "performance_tests": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "success_rate": 100.0
+    },
+    "gui_tests": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "success_rate": 50.0
+    },
+    "workflow_tests": {
+      "total": 2,
+      "passed": 1,
+      "failed": 1,
+      "success_rate": 50.0
+    }
+  },
+  "detailed_results": [
+    {
+      "name": "RegisterFile Tests",
+      "passed": false,
+      "duration": 0.04887223243713379,
+      "details": "Exit code: 1",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\RF_Tests.py\", line 419, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\RF_Tests.py\", line 412, in main\n    success = tests.run_all_tests()\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\RF_Tests.py\", line 349, in run_all_tests\n    print(\"\\U0001f9ea REGISTER FILE UNIT TESTS\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\nickc\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1253.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "timestamp": "2025-07-07T09:04:01.564945"
+    },
+    {
+      "name": "ALU Tests",
+      "passed": false,
+      "duration": 0.04370594024658203,
+      "details": "Exit code: 1",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\ALU_tests.py\", line 375, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\ALU_tests.py\", line 368, in main\n    success = tests.run_all_tests()\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\ALU_tests.py\", line 304, in run_all_tests\n    print(\"\\U0001f9ea ALU UNIT TESTS\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\nickc\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1253.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "timestamp": "2025-07-07T09:04:01.608886"
+    },
+    {
+      "name": "Memory Tests",
+      "passed": false,
+      "duration": 0.055042266845703125,
+      "details": "Exit code: 1",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\Memory_tests.py\", line 452, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\Memory_tests.py\", line 445, in main\n    success = tests.run_all_tests()\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\Memory_tests.py\", line 379, in run_all_tests\n    print(\"\\U0001f9ea MEMORY SYSTEM UNIT TESTS\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\nickc\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1253.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "timestamp": "2025-07-07T09:04:01.664140"
+    },
+    {
+      "name": "Assembler Tests",
+      "passed": false,
+      "duration": 0.05020427703857422,
+      "details": "Exit code: 1",
+      "error": "Traceback (most recent call last):\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\AssemblerTest.py\", line 450, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\AssemblerTest.py\", line 443, in main\n    success = tests.run_all_tests()\n  File \"C:\\Users\\nickc\\OneDrive\\\u0388\u03b3\u03b3\u03c1\u03b1\u03c6\u03b1\\\u03a5\u03c0\u03bf\u03bb\u03bf\u03b3\u03b9\u03c3\u03c4\u03ae\u03c2\\PYTHON\\python projects\\Risc-v-with-Python\\src\\UnitTests\\AssemblerTest.py\", line 379, in run_all_tests\n    print(\"\\U0001f9ea RISC-V ASSEMBLER UNIT TESTS\")\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\nickc\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\encodings\\cp1253.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\n           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f9ea' in position 0: character maps to <undefined>\n",
+      "timestamp": "2025-07-07T09:04:01.714585"
+    },
+    {
+      "name": "Complete Processor Workflow",
+      "passed": false,
+      "duration": 0.005555391311645508,
+      "details": "x6 should be 100, got 4",
+      "error": "x6 should be 100, got 4",
+      "timestamp": "2025-07-07T09:04:01.720456"
+    },
+    {
+      "name": "Assembler-Processor Pipeline",
+      "passed": false,
+      "duration": 0.003522157669067383,
+      "details": "Pipeline execution failed",
+      "error": "Pipeline execution failed",
+      "timestamp": "2025-07-07T09:04:01.724131"
+    },
+    {
+      "name": "Memory System Integration",
+      "passed": true,
+      "duration": 0.0004456043243408203,
+      "details": "IMem: 4 instructions, DMem: 3 operations",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.724699"
+    },
+    {
+      "name": "Execution Speed Benchmark",
+      "passed": true,
+      "duration": 0.00081634521484375,
+      "details": "Instructions: 81, Speed: 155558 inst/s, 155558 cycles/s",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.725671"
+    },
+    {
+      "name": "Memory Performance",
+      "passed": true,
+      "duration": 0.05130171775817871,
+      "details": "Writes: 38292 ops/s, Reads: 39764 ops/s",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.777065"
+    },
+    {
+      "name": "Assembly Performance",
+      "passed": true,
+      "duration": 0.006014585494995117,
+      "details": "Lines: 153, Speed: 29855 lines/s, Instructions: 151",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.783159"
+    },
+    {
+      "name": "GUI Components",
+      "passed": true,
+      "duration": 0.02559041976928711,
+      "details": "Components: tkinter=True, customtkinter=True, main_gui=False",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.808907"
+    },
+    {
+      "name": "GUI Workflow",
+      "passed": false,
+      "duration": 0.07018852233886719,
+      "details": "GUI initialization failed",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.879214"
+    },
+    {
+      "name": "Development Workflow",
+      "passed": false,
+      "duration": 0.00441741943359375,
+      "details": "Fibonacci(1): expected 1, got 2",
+      "error": "Fibonacci(1): expected 1, got 2",
+      "timestamp": "2025-07-07T09:04:01.885280"
+    },
+    {
+      "name": "Exception Workflow",
+      "passed": true,
+      "duration": 0.00046181678771972656,
+      "details": "Graceful error recovery: 4 cycles, final state: x1=10, x2=5",
+      "error": null,
+      "timestamp": "2025-07-07T09:04:01.885825"
+    }
+  ]
+}
