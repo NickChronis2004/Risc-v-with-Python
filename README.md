@@ -1,582 +1,558 @@
-🚀 RISC-V 16-bit Processor Simulator System
+# 🚀 RISC-V 16-bit Processor Simulator System
+
 A comprehensive, educational RISC-V processor simulator with real-time monitoring, advanced debugging capabilities, and production-ready testing framework.
-Show Image
-Show Image
-Show Image
-🌟 Features
-🔧 Core Components
 
-Complete RISC-V Implementation: 16-bit processor with full instruction set
-Advanced ALU: 7 operations with flags and performance tracking
-Harvard Architecture: Separate instruction and data memory systems
-Register File: 16 registers (x0-x15) with ABI name support
-Control Unit: Comprehensive signal generation and flow control
-Assembler: Full-featured ASM → binary converter with debugging
+## 🌟 Features
 
-🎨 User Interfaces
+### 🔧 Core Components
+- **Complete RISC-V Implementation**: 16-bit processor with full instruction set
+- **Advanced ALU**: 7 operations with flags and performance tracking
+- **Harvard Architecture**: Separate instruction and data memory systems
+- **Register File**: 16 registers (x0-x15) with ABI name support
+- **Control Unit**: Comprehensive signal generation and flow control
+- **Assembler**: Full-featured ASM → binary converter with debugging
 
-Modern GUI: Real-time visualization with CustomTkinter
-Monitoring Dashboard: Live performance metrics and debugging
-Interactive CLI: Command-line tools for development
-Web Interface: Browser-based simulator (coming soon)
+### 🎨 User Interfaces
+- **Modern GUI**: Real-time visualization with CustomTkinter
+- **Monitoring Dashboard**: Live performance metrics and debugging
+- **Interactive CLI**: Command-line tools for development
+- **Ultimate Launcher**: Mission control center for all operations
 
-🧪 Testing & Validation
+### 🧪 Testing & Validation
+- **Unit Tests**: Comprehensive component testing
+- **Integration Tests**: Full system validation
+- **Performance Benchmarks**: Speed and efficiency analysis
+- **Real-World Scenarios**: Production readiness testing
+- **Educational Test Suite**: Academic use case validation
 
-Unit Tests: Comprehensive component testing
-Integration Tests: Full system validation
-Performance Benchmarks: Speed and efficiency analysis
-Real-World Scenarios: Production readiness testing
-Educational Test Suite: Academic use case validation
+### 📊 Data Export & Logging
+- **Complete System Export**: ZIP files with all source, tests, and reports
+- **JSON Reports**: Detailed test results and performance metrics
+- **Log Files**: Execution traces and debugging information
+- **Binary Export**: Assembly programs to executable format
 
-📊 Monitoring & Analysis
+## 🚀 Installation & Setup
 
-Real-time Metrics: CPU cycles, memory usage, instruction mix
-Performance Profiling: Bottleneck identification and optimization
-Visual Debugging: Step-by-step execution tracing
-Export Capabilities: JSON/XML report generation
+### Prerequisites
+- **Python 3.7+** (Required)
+- **tkinter** (usually included with Python)
+- **Optional**: customtkinter for modern GUI
 
-🏗️ System Architecture
-┌─────────────────────────────────────────────────────────────┐
-│                    RISC-V Simulator System                  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
-│  │     GUI     │  │ Monitoring  │  │   Testing   │         │
-│  │ Interface   │  │ Dashboard   │  │   Suite     │         │
-│  └─────────────┘  └─────────────┘  └─────────────┘         │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
-│  │ Instruction │  │   Control   │  │     ALU     │         │
-│  │   Decoder   │  │    Unit     │  │             │         │
-│  └─────────────┘  └─────────────┘  └─────────────┘         │
-│                                                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
-│  │ Register    │  │ Instruction │  │    Data     │         │
-│  │    File     │  │   Memory    │  │   Memory    │         │
-│  └─────────────┘  └─────────────┘  └─────────────┘         │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│                    Assembler & Tools                       │
-└─────────────────────────────────────────────────────────────┘
-🚀 Quick Start
-Prerequisites
+### Step 1: Initial Setup
+**IMPORTANT**: Always run the setup script first!
 
-Python 3.7+
-tkinter (usually included with Python)
-Optional: customtkinter for modern GUI
-
-Installation
-
-Clone the repository
-bashgit clone <repository-url>
+```bash
+# Clone the repository
+git clone <repository-url>
 cd risc-v-simulator
 
-Install dependencies
-bashpip install customtkinter pillow
-# or run the setup script
+# Run setup script (MANDATORY)
+python src/setup_script.py
+```
+
+The setup script will:
+- ✅ Check Python version compatibility
+- ✅ Install required dependencies
+- ✅ Verify system requirements
+- ✅ Create necessary directories
+- ✅ Initialize configuration files
+
+### Step 2: Launch the System
+
+#### Option A: Ultimate Launcher (Recommended)
+```bash
+# Navigate to src directory
+cd src
+
+# Launch mission control
+python ../ultimate_launcher.py
+```
+
+#### Option B: Direct Components
+```bash
+# GUI only
+python ultimate_launcher.py --gui
+
+# Testing only
+python ultimate_launcher.py --test
+
+# Quick start wizard
+python ultimate_launcher.py --wizard
+```
+
+## 🎛️ System Features Guide
+
+### 1. 🧪 Testing & Validation
+
+#### Unit Tests (Option 1)
+- Tests individual components (ALU, Memory, Registers)
+- Validates basic functionality
+- **Usage**: Select option 1 from launcher
+
+#### Integration Tests (Option 2)
+- Tests component interactions
+- Full system validation
+- **Usage**: Select option 2 from launcher
+
+#### Performance Tests (Option 3)
+- Benchmarks execution speed
+- Memory efficiency analysis
+- **Usage**: Select option 3 from launcher
+
+#### Real-World Scenarios (Option 4)
+- Embedded system simulation
+- Educational platform testing
+- Research capability assessment
+- **Usage**: Select option 4 from launcher
+
+#### Ultimate Test Suite (Option 5)
+- **COMPLETE** system validation
+- All tests combined
+- **Duration**: Several minutes
+- **Usage**: Select option 5 from launcher
+
+### 2. 🖥️ User Interfaces
+
+#### Main GUI (Option 6)
+- Visual assembly editor
+- Real-time execution monitoring
+- Step-by-step debugging
+- **Features**:
+  - 📝 Syntax highlighting
+  - ⚡ Live execution
+  - 🗂️ Register visualization
+  - 💾 Memory browser
+
+#### Monitoring Dashboard (Option 7)
+- Performance metrics
+- System monitoring
+- **Real-time data**:
+  - CPU cycles
+  - Memory usage
+  - Instruction mix
+  - Branch statistics
+
+#### GUI Test Runner (Option 8)
+- Visual test execution
+- Interactive test results
+- Progress monitoring
+
+### 3. 🔧 Development Tools
+
+#### Interactive Assembler (Option 9)
+**Most Popular Feature!**
+```bash
+# From launcher, select option 9
+ASM> addi x1, x0, 10    # Load immediate
+ASM> add x2, x1, x1     # Add registers
+ASM> sw x2, 0(x0)       # Store to memory
+ASM> halt               # Stop execution
+ASM> run                # Execute program
+ASM> quit               # Exit
+```
+
+**Commands**:
+- `help` - Show available commands
+- `example` - Show example programs
+- `run` - Execute assembled program
+- `load <file>` - Load assembly file
+- `quit` - Exit assembler
+
+#### Component Inspector (Option 10)
+**Deep System Analysis**
+1. **Register File**: View all 16 registers with ABI names
+2. **ALU**: Status, flags, operation history
+3. **Memory System**: Data memory contents and statistics
+4. **Instruction Decoder**: Supported instruction set
+5. **Control Unit**: Complete control signal table
+
+#### Performance Profiler (Option 11)
+- Execution time analysis
+- Instruction throughput metrics
+- Performance bottleneck identification
+
+### 4. 📊 Reports & Data Export
+
+#### System Report Generation (Option 12)
+- **Comprehensive** system status
+- Test results summary
+- Performance metrics
+- **Output**: JSON format report
+
+#### Test History (Option 13)
+- Previous test runs
+- Historical performance data
+- **Files**: `risc_v_test_report_*.json`
+
+#### Export All Data (Option 14)
+**COMPLETE SYSTEM EXPORT**
+- **Output**: `risc_v_complete_export_YYYYMMDD_HHMMSS.zip`
+- **Contains**:
+  - ✅ All source code (`src/`)
+  - ✅ Test files (`UnitTests/`)
+  - ✅ Generated reports (`.json`)
+  - ✅ Documentation (`README.md`, `LICENSE`)
+  - ✅ Configuration files
+
+## 📁 Working Directory Structure
+
+**IMPORTANT**: Always work from the correct directory!
+
+```
+risc-v-simulator/
+├── src/                          # 📍 START HERE
+│   ├── MainCPU.py               # Core processor
+│   ├── ALU.py                   # Arithmetic unit
+│   ├── Memory.py                # Memory system
+│   ├── Assembler.py             # Assembly compiler
+│   ├── interface.py             # Main GUI
+│   ├── setup_script.py          # 🚨 RUN FIRST
+│   └── UnitTests/               # Test suite
+├── ultimate_launcher.py         # Mission control
+├── Examples/                    # Sample programs
+├── Documentation/              # Technical docs
+└── logs/                       # Generated log files
+```
+
+### Proper Usage Pattern:
+```bash
+# 1. Setup (one time only)
 python src/setup_script.py
 
-Launch the system
-bashpython ultimate_launcher.py
+# 2. Navigate to src
+cd src
 
+# 3. Launch system
+python ../ultimate_launcher.py
+```
 
-First Run - Quick Start Wizard
-The system includes a helpful wizard for new users:
-bashpython ultimate_launcher.py --wizard
-This will:
+## 📊 Log Files & Data Export
 
-✅ Check system requirements
-🧪 Run a quick functionality test
-🎯 Guide you through your first steps
-📚 Provide system overview
+### Automatic Log Generation
+The system automatically creates various log files:
 
-🎮 Usage Examples
-Example 1: Basic Assembly Program
-assembly# Simple arithmetic program
+#### Test Reports
+- **Location**: Current directory and `src/UnitTests/`
+- **Format**: `risc_v_test_report_YYYYMMDD_HHMMSS.json`
+- **Contains**: Test results, timing, pass/fail status
+
+#### Real-World Assessments
+- **Format**: `risc_v_real_world_assessment_YYYYMMDD_HHMMSS.json`
+- **Contains**: Production readiness metrics
+
+#### Execution Logs
+- **Location**: `logs/` directory
+- **Contains**: Detailed execution traces, debug information
+
+#### Complete System Export
+- **Trigger**: Option 14 from launcher
+- **Format**: `risc_v_complete_export_YYYYMMDD_HHMMSS.zip`
+- **Size**: Complete project backup
+
+### Manual Data Export
+```bash
+# From launcher
+🚀 Select mission (1-15): 14
+
+# System will create:
+✅ Complete export saved: risc_v_complete_export_20250707_210000.zip
+```
+
+## 🎮 Quick Start Examples
+
+### Example 1: First Program
+```bash
+# 1. Launch system
+cd src
+python ../ultimate_launcher.py
+
+# 2. Select Interactive Assembler (option 9)
+🚀 Select mission (1-15): 9
+
+# 3. Write simple program
+ASM> addi x1, x0, 10     # x1 = 10
+ASM> addi x2, x0, 5      # x2 = 5
+ASM> add x3, x1, x2      # x3 = 15
+ASM> halt                # Stop
+ASM> run                 # Execute
+
+# 4. View results in registers
+```
+
+### Example 2: System Analysis
+```bash
+# 1. Launch Component Inspector (option 10)
+🚀 Select mission (1-15): 10
+
+# 2. Explore components
+Select component (1-6): 1    # View registers
+Select component (1-6): 2    # View ALU status
+Select component (1-6): 3    # View memory
+```
+
+### Example 3: Performance Testing
+```bash
+# 1. Run Performance Tests (option 3)
+🚀 Select mission (1-15): 3
+
+# 2. View results
+# System shows: Instructions/second, cycles/second
+
+# 3. Export data for analysis (option 14)
+🚀 Select mission (1-15): 14
+```
+
+## 🛠️ Advanced Usage
+
+### Custom Assembly Programs
+Create `.asm` files in the project directory:
+
+```assembly
+# fibonacci.asm
 main:
-    addi x1, x0, 10     # x1 = 10
-    addi x2, x0, 5      # x2 = 5
-    add x3, x1, x2      # x3 = x1 + x2 = 15
-    sw x3, 0(x0)        # Store result to memory
-    halt                # Stop execution
-Example 2: Loop with Control Flow
-assembly# Count down from 5
-main:
-    addi x1, x0, 5      # Counter = 5
-    addi x2, x0, 0      # Sum = 0
+    addi x1, x0, 1      # x1 = 1 (first fib)
+    addi x2, x0, 1      # x2 = 1 (second fib)
+    addi x3, x0, 8      # x3 = 8 (counter)
     
 loop:
-    beq x1, x0, done    # If counter == 0, exit
-    add x2, x2, x1      # Sum += counter
-    addi x1, x1, -1     # Counter-- (using -1 as 15 in 4-bit)
-    bne x1, x0, loop    # Continue if not zero
+    beq x3, x0, done    # if counter == 0, exit
+    add x4, x1, x2      # x4 = x1 + x2 (next fib)
+    add x1, x2, x0      # x1 = x2
+    add x2, x4, x0      # x2 = x4
+    addi x3, x3, -1     # counter--
+    bne x3, x0, loop    # continue loop
     
 done:
-    sw x2, 5(x0)        # Store final sum
+    sw x2, 0(x0)        # store result
     halt
-Example 3: Memory Operations
-assembly# Array processing
-main:
-    # Initialize array
-    addi x1, x0, 10
-    addi x2, x0, 20
-    addi x3, x0, 30
-    
-    # Store array elements
-    sw x1, 0(x0)        # array[0] = 10
-    sw x2, 1(x0)        # array[1] = 20
-    sw x3, 2(x0)        # array[2] = 30
-    
-    # Process array
-    lw x4, 0(x0)        # Load array[0]
-    lw x5, 1(x0)        # Load array[1]
-    add x6, x4, x5      # Sum first two elements
-    sw x6, 3(x0)        # Store result
-    
-    halt
-🛠️ Development Tools
-Interactive Assembler
-bashpython ultimate_launcher.py
-# Select option 9: Interactive Assembler
-Component Inspector
-bashpython ultimate_launcher.py
-# Select option 10: Component Inspector
-Performance Profiler
-bashpython ultimate_launcher.py
-# Select option 11: Performance Profiler
-🧪 Testing Framework
-Running Tests
-Unit Tests
-bashpython ultimate_launcher.py
-# Select option 1: Run Unit Tests
-Integration Tests
-bashpython ultimate_launcher.py
-# Select option 2: Run Integration Tests
-Performance Tests
-bashpython ultimate_launcher.py
-# Select option 3: Run Performance Tests
-Real-World Scenarios
-bashpython ultimate_launcher.py
-# Select option 4: Run Real-World Scenarios
-Complete Test Suite
-bashpython ultimate_launcher.py
-# Select option 5: Run Ultimate Test Suite
-Command Line Testing
-bash# Quick test
-python master_test_runner.py --quick
+```
 
-# Specific category
-python master_test_runner.py --category unit
+### Load and Run Custom Programs
+```bash
+# In Interactive Assembler
+ASM> load fibonacci.asm
+ASM> run
+```
 
-# Interactive mode
-python master_test_runner.py --interactive
+### Comprehensive Testing
+```bash
+# Run complete validation
+🚀 Select mission (1-15): 5
 
-# Full test suite
-python master_test_runner.py
-📊 Monitoring & Debugging
-GUI Interface
-Launch the modern GUI for interactive development:
-bashpython ultimate_launcher.py --gui
-Features:
+# Duration: Several minutes
+# Tests: Unit, Integration, Performance, Real-World
+```
 
-📝 Code Editor: Syntax highlighting for RISC-V assembly
-⚡ Real-time Execution: Step-by-step or continuous execution
-🗂️ Register Visualization: Live register file monitoring
-💾 Memory Explorer: Interactive memory content browser
-📈 Performance Metrics: Cycles, instructions, memory operations
-🔍 Execution Trace: Detailed instruction-by-instruction log
+## 🐛 Troubleshooting
 
-Monitoring Dashboard
-Launch the monitoring dashboard for detailed analysis:
-bashpython ultimate_launcher.py --monitor
-Features:
+### Common Issues & Solutions
 
-📊 Live Metrics: Real-time performance graphs
-🎛️ Control Panel: Execution control and debugging
-📈 Performance Graphs: Visual performance analysis
-💾 Memory Analysis: Memory usage patterns
-📋 Statistics: Comprehensive execution statistics
-💾 Data Export: JSON export for analysis
+#### 1. "Module not found" errors
+```bash
+# Solution: Run from correct directory
+cd src
+python ../ultimate_launcher.py
+```
 
-Command Line Debugging
-bash# Interactive assembler
-python src/interface.py
+#### 2. Setup script not run
+```bash
+# Solution: Always run setup first
+python src/setup_script.py
+```
 
-# Component inspection
-python src/RegisterFile.py
-python src/ALU.py
-python src/Memory.py
-📚 Educational Use
-Computer Architecture Course
-Perfect for teaching:
+#### 3. GUI doesn't start
+```bash
+# Check tkinter installation
+python -c "import tkinter"
 
-RISC-V Instruction Set: All major instruction types
-Pipeline Concepts: Instruction flow and dependencies
-Memory Hierarchy: Cache simulation and analysis
-Performance Analysis: CPI, throughput, efficiency metrics
-Assembly Programming: Hands-on coding experience
+# Install if missing (Ubuntu/Debian)
+sudo apt-get install python3-tkinter
+```
 
-Lab Exercises
-The system includes pre-built lab exercises:
+#### 4. Tests fail with path errors
+```bash
+# Ensure you're in src directory
+pwd  # Should end with /src
+```
 
-Basic Instructions Lab
-assembly# Lab 1: Arithmetic and Logic
+#### 5. Permission errors
+```bash
+# Make launcher executable
+chmod +x ultimate_launcher.py
+```
+
+### Debug Mode
+```bash
+# Enable verbose output
+export RISC_V_DEBUG=1
+python ultimate_launcher.py
+```
+
+## 📚 Educational Resources
+
+### Learning Path
+1. **Start with Component Inspector** (Option 10)
+   - Understand system architecture
+   - See instruction set
+   - Explore register file
+
+2. **Try Interactive Assembler** (Option 9)
+   - Write simple programs
+   - Learn RISC-V instructions
+   - Debug step-by-step
+
+3. **Run Performance Tests** (Option 3)
+   - Understand system capabilities
+   - See execution metrics
+
+4. **Export and Analyze Data** (Option 14)
+   - Study generated reports
+   - Analyze performance logs
+
+### Sample Assignments
+```assembly
+# Assignment 1: Basic Operations
 addi x1, x0, 15
 addi x2, x0, 7
-add x3, x1, x2    # Addition
-sub x4, x1, x2    # Subtraction
-and x5, x1, x2    # Bitwise AND
+add x3, x1, x2      # Addition
+sub x4, x1, x2      # Subtraction
+and x5, x1, x2      # Bitwise AND
 halt
 
-Memory Operations Lab
-assembly# Lab 2: Load/Store Instructions
+# Assignment 2: Memory Operations
 addi x1, x0, 42
-sw x1, 0(x0)      # Store to memory
-lw x2, 0(x0)      # Load from memory
-add x3, x1, x2    # Use loaded data
+sw x1, 0(x0)        # Store to memory
+lw x2, 0(x0)        # Load from memory
+add x3, x1, x2      # Use loaded data
 halt
 
-Control Flow Lab
-assembly# Lab 3: Branches and Loops
-addi x1, x0, 5    # Counter
-addi x2, x0, 0    # Accumulator
-
+# Assignment 3: Control Flow
+addi x1, x0, 5      # Counter
+addi x2, x0, 0      # Accumulator
 loop:
     beq x1, x0, done
     add x2, x2, x1
     addi x1, x1, -1
     bne x1, x0, loop
-
 done:
     halt
+```
 
+## 🎯 Supported Instructions
 
-🔬 Research Applications
-Architecture Research
+### Complete Instruction Set
 
-Instruction Set Extensions: Easy ISA modification
-Pipeline Analysis: Detailed execution tracking
-Memory Hierarchy Studies: Cache behavior simulation
-Performance Modeling: Cycle-accurate simulation
+| Type | Instruction | Format | Description |
+|------|-------------|--------|-------------|
+| **R-Type** | ADD | `add rd, rs1, rs2` | rd = rs1 + rs2 |
+| | SUB | `sub rd, rs1, rs2` | rd = rs1 - rs2 |
+| | AND | `and rd, rs1, rs2` | rd = rs1 & rs2 |
+| | OR | `or rd, rs1, rs2` | rd = rs1 \| rs2 |
+| | XOR | `xor rd, rs1, rs2` | rd = rs1 ^ rs2 |
+| **I-Type** | ADDI | `addi rd, rs1, imm` | rd = rs1 + imm |
+| | ANDI | `andi rd, rs1, imm` | rd = rs1 & imm |
+| | ORI | `ori rd, rs1, imm` | rd = rs1 \| imm |
+| | LW | `lw rd, offset(rs1)` | rd = memory[rs1 + offset] |
+| **S-Type** | SW | `sw rs2, offset(rs1)` | memory[rs1 + offset] = rs2 |
+| **B-Type** | BEQ | `beq rs1, rs2, offset` | if (rs1 == rs2) PC += offset |
+| | BNE | `bne rs1, rs2, offset` | if (rs1 != rs2) PC += offset |
+| **J-Type** | JAL | `jal rd, offset` | rd = PC + 1; PC += offset |
+| **Special** | NOP | `nop` | No operation |
+| | HALT | `halt` | Stop execution |
 
-Algorithm Analysis
+## 📊 Performance Metrics
 
-Complexity Studies: Instruction count analysis
-Optimization Research: Performance comparison
-Embedded Systems: Resource constraint simulation
+### Benchmark Results (Typical System)
+- **Execution Speed**: 225,000+ instructions/second
+- **Memory Throughput**: 100,000+ operations/second  
+- **Assembly Speed**: 20,000+ lines/second
+- **Test Suite**: 4/5 test categories pass (>80%)
 
-🏭 Production Readiness
-Validation Framework
-The system includes comprehensive validation:
-Embedded System Simulation
-python# Sensor monitoring and control
-def embedded_scenario():
-    # Simulates real embedded controller
-    # - 4 sensor inputs
-    # - 2 actuator outputs  
-    # - Control logic implementation
-    # - Real-time constraints
-Educational Platform Assessment
-python# Computer architecture course validation
-def educational_scenario():
-    # Tests learning objectives:
-    # - Basic instruction understanding
-    # - Memory operation concepts
-    # - Control flow mastery
-    # - Performance analysis skills
-Research Platform Evaluation
-python# Research capability assessment
-def research_scenario():
-    # Evaluates research features:
-    # - Instruction set coverage
-    # - Performance analysis depth
-    # - Extensibility options
-    # - Data export capabilities
-Production Metrics
+### System Capabilities
+- **Max Program Size**: 1024 instructions
+- **Data Memory**: 1024 words
+- **Register File**: 16 × 16-bit registers
+- **Address Space**: 16-bit (64KB)
 
-Reliability: 99.5%+ test pass rate
-Performance: 10,000+ cycles/second simulation speed
-Accuracy: Cycle-accurate RISC-V implementation
-Scalability: Support for programs up to 1000+ instructions
+## 🔐 Data Security & Export
 
-📁 Project Structure
-risc-v-simulator/
-├── src/                          # Core implementation
-│   ├── MainCPU.py               # Main processor class
-│   ├── RegisterFile.py          # Register file implementation
-│   ├── ALU.py                   # Arithmetic Logic Unit
-│   ├── Memory.py                # Memory system (instruction + data)
-│   ├── InstructionDecoder.py    # Instruction decoder
-│   ├── ControlUnit.py           # Control signal generation
-│   ├── Assembler.py             # RISC-V assembler
-│   ├── interface.py             # Main GUI interface
-│   ├── ExceptionHandling.py     # Error handling system
-│   └── UnitTests/               # Unit test suite
-│       ├── RF_Tests.py          # Register file tests
-│       ├── ALU_tests.py         # ALU tests
-│       ├── Memory_tests.py      # Memory tests
-│       └── AssemblerTest.py     # Assembler tests
-├── ultimate_launcher.py         # Main system launcher
-├── master_test_runner.py        # Comprehensive test runner
-├── ultimate_test_suite.py       # Ultimate validation suite
-├── real_world_scenarios.py      # Real-world testing
-├── gui_test_scenarios.py        # GUI testing framework
-├── monitoring_dashboard.py      # Performance monitoring
-├── README.md                    # This file
-├── LICENSE                      # License information
-└── examples/                    # Example programs
-    ├── fibonacci.asm            # Fibonacci sequence
-    ├── sorting.asm              # Bubble sort algorithm
-    ├── matrix.asm               # Matrix operations
-    └── embedded.asm             # Embedded controller example
-🎯 Supported Instructions
-R-Type (Register-Register)
-InstructionOpcodeFormatDescriptionADD0x0add rd, rs1, rs2rd = rs1 + rs2SUB0x1sub rd, rs1, rs2rd = rs1 - rs2AND0x2and rd, rs1, rs2rd = rs1 & rs2OR0x3or rd, rs1, rs2rd = rs1 | rs2XOR0x4xor rd, rs1, rs2rd = rs1 ^ rs2
-I-Type (Immediate)
-InstructionOpcodeFormatDescriptionADDI0x5addi rd, rs1, immrd = rs1 + immANDI0x6andi rd, rs1, immrd = rs1 & immORI0x7ori rd, rs1, immrd = rs1 | immLW0x8lw rd, offset(rs1)rd = memory[rs1 + offset]
-S-Type (Store)
-InstructionOpcodeFormatDescriptionSW0x9sw rs2, offset(rs1)memory[rs1 + offset] = rs2
-B-Type (Branch)
-InstructionOpcodeFormatDescriptionBEQ0xAbeq rs1, rs2, offsetif (rs1 == rs2) PC += offsetBNE0xBbne rs1, rs2, offsetif (rs1 != rs2) PC += offset
-J-Type (Jump)
-InstructionOpcodeFormatDescriptionJAL0xCjal rd, offsetrd = PC + 1; PC += offset
-Special
-InstructionOpcodeFormatDescriptionNOP0xEnopNo operationHALT0xFhaltStop execution
-🗂️ Register File
-Register Layout
-RegisterABI NameDescriptionx0zeroHard-wired zerox1raReturn addressx2spStack pointerx3gpGlobal pointerx4tpThread pointerx5-x7t0-t2Temporary registersx8-x9s0-s1Saved registersx10-x14a0-a4Function arguments/return valuesx15a7System call number
-🚦 System Status Indicators
-Execution States
+### Exported Data Contents
+When you select "Export All Data" (Option 14):
 
-🟢 READY: System initialized and ready
-🔵 RUNNING: Program executing
-🟡 HALTED: Program completed normally
-🔴 ERROR: Execution error occurred
-⚪ STOPPED: User-initiated stop
+```
+risc_v_complete_export_YYYYMMDD_HHMMSS.zip
+├── source/                 # All .py source files
+├── tests/                  # Complete test suite
+├── reports/                # All .json reports
+├── README.md              # This documentation
+└── LICENSE                # License information
+```
 
-Performance Indicators
+### Safe Data Handling
+- ✅ No personal data collected
+- ✅ All data stored locally
+- ✅ Complete source code included
+- ✅ Portable project format
 
-CPI: Cycles Per Instruction (target: < 1.5)
-Throughput: Instructions/second (target: > 5,000)
-Memory Efficiency: Read/write balance (target: > 0.8)
-Branch Accuracy: Prediction rate (target: > 0.9)
+## 🚀 Command Reference
 
-🔧 Configuration Options
-Memory Configuration
-python# Instruction Memory: 1024 words (default)
-# Data Memory: 1024 words (default)
-# Base Address: 0x1000 (data memory)
+### Ultimate Launcher Commands
+```bash
+python ultimate_launcher.py           # Full interactive mode
+python ultimate_launcher.py --gui     # GUI only
+python ultimate_launcher.py --test    # Quick test
+python ultimate_launcher.py --wizard  # Setup wizard
+python ultimate_launcher.py --help    # Show help
+```
 
-processor = RiscVProcessor(
-    instruction_memory_size=1024,
-    data_memory_size=1024
-)
-Assembler Options
-pythonassembler = RiscVAssembler()
+### Interactive Assembler Commands
+```
+help        # Show command help
+example     # Show example programs  
+run         # Execute current program
+load <file> # Load assembly file
+quit        # Exit assembler
+```
 
-# Generate binary file
-assembler.save_binary_file("program.bin")
+## 📞 Support & Documentation
 
-# Generate hex file with debugging info
-assembler.save_hex_file("program.hex")
-GUI Configuration
-python# Theme options: "dark", "light", "system"
-ctk.set_appearance_mode("dark")
+### Getting Help
+1. **Interactive Help**: Use `help` commands in each tool
+2. **System Check**: Run setup script for diagnostics
+3. **Debug Mode**: Set `RISC_V_DEBUG=1` for verbose output
+4. **Component Inspector**: Use Option 10 for system analysis
 
-# Color theme: "blue", "green", "dark-blue"
-ctk.set_default_color_theme("blue")
-🐛 Troubleshooting
-Common Issues
-Installation Problems
-bash# Python version too old
-python --version  # Should be 3.7+
+### Documentation Structure
+- **README.md** (this file) - Complete user guide
+- **Documentation/modules/** - Technical API reference
+- **Examples/** - Sample programs and use cases
 
-# Missing tkinter
-sudo apt-get install python3-tkinter  # Ubuntu/Debian
-brew install python-tk                # macOS
+---
 
-# Missing dependencies
-pip install customtkinter pillow
-Runtime Errors
-bash# Module not found
-export PYTHONPATH="${PYTHONPATH}:./src"
+## 🎉 Quick Reference Card
 
-# Permission errors
-chmod +x ultimate_launcher.py
+### Essential Commands
+```bash
+# 1. First-time setup
+python src/setup_script.py
 
-# GUI doesn't start
-python ultimate_launcher.py --gui
-Assembly Errors
-assembly# Common mistakes:
-addi x1, x0, 16    # ❌ Immediate too large (max 15)
-addi x1, x0, 15    # ✅ Correct
+# 2. Navigate to working directory  
+cd src
 
-add x0, x1, x2     # ❌ Cannot write to x0
-add x3, x1, x2     # ✅ Correct
+# 3. Launch system
+python ../ultimate_launcher.py
 
-beq x1, x2, 100    # ❌ Branch offset too large
-beq x1, x2, loop   # ✅ Use labels
-Performance Issues
-bash# Slow execution
-python ultimate_launcher.py
-# Option 11: Performance Profiler
+# 4. Most popular options:
+#    Option 9: Interactive Assembler
+#    Option 10: Component Inspector  
+#    Option 14: Export All Data
+```
 
-# Memory usage high
-# Reduce memory size in configuration
-processor = RiscVProcessor(64, 64)  # Smaller memories
-Debug Mode
-bash# Enable verbose output
-export RISC_V_DEBUG=1
-python ultimate_launcher.py
+### Key Features
+- 🚀 **Complete RISC-V Simulation**
+- 🔧 **Interactive Development Tools**  
+- 📊 **Comprehensive Testing Framework**
+- 💾 **Complete Data Export**
+- 🎓 **Educational Resources**
 
-# Component-specific debugging
-python src/MainCPU.py      # Processor debug
-python src/Assembler.py    # Assembler debug
-🤝 Contributing
-Development Setup
-bash# Clone repository
-git clone <repository-url>
-cd risc-v-simulator
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/macOS
-venv\Scripts\activate     # Windows
-
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-python master_test_runner.py
-Adding New Features
-New Instruction
-
-Add to InstructionDecoder.py ISA table
-Implement in ControlUnit.py control table
-Add execution logic to MainCPU.py
-Update Assembler.py parsing
-Add tests to appropriate test file
-
-New GUI Component
-
-Add to interface.py main GUI
-Update gui_test_scenarios.py
-Test with monitoring_dashboard.py
-
-New Test Scenario
-
-Add to real_world_scenarios.py
-Update master_test_runner.py
-Validate with ultimate_test_suite.py
-
-Code Style
-
-Follow PEP 8 style guidelines
-Use type hints where possible
-Include comprehensive docstrings
-Add unit tests for new functionality
-
-📊 Performance Benchmarks
-Test System Specifications
-
-CPU: Intel i7-8700K @ 3.7GHz
-RAM: 16GB DDR4-2400
-Python: 3.9.7
-OS: Ubuntu 20.04 LTS
-
-Benchmark Results
-Execution Performance
-Program TypeInstructionsCyclesReal TimeSim SpeedArithmetic10150.001s15,000 HzMemory Ops20350.002s17,500 HzControl Flow50850.005s17,000 HzComplex Loop2003500.020s17,500 Hz
-Assembly Performance
-Program SizeLinesAssembly TimeSpeedSmall100.001s10,000 lines/sMedium1000.005s20,000 lines/sLarge10000.050s20,000 lines/s
-Memory Performance
-OperationCountTimeSpeedMemory Write10000.010s100,000 ops/sMemory Read10000.008s125,000 ops/sMemory Clear10.001sN/A
-🎓 Educational Resources
-Tutorials
-
-Getting Started: docs/tutorial-01-getting-started.md
-First Program: docs/tutorial-02-first-program.md
-Memory Operations: docs/tutorial-03-memory.md
-Control Flow: docs/tutorial-04-control-flow.md
-Advanced Features: docs/tutorial-05-advanced.md
-
-Example Programs
-
-Fibonacci: Classic recursive sequence
-Bubble Sort: Array sorting algorithm
-Matrix Math: 2D array operations
-Embedded Controller: Sensor/actuator simulation
-Digital Filter: Signal processing example
-
-Assignments
-Ready-to-use assignments for computer architecture courses:
-
-Basic instruction implementation
-Pipeline hazard analysis
-Cache performance study
-Compiler optimization effects
-Embedded system design
-
-📜 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-🙏 Acknowledgments
-
-RISC-V Foundation for the open instruction set architecture
-Educational Community for feedback and requirements
-Open Source Contributors for libraries and tools
-Students and Educators for testing and validation
-
-📞 Support
-Documentation
-
-System Overview: This README
-API Documentation: docs/api/
-User Guides: docs/guides/
-Troubleshooting: docs/troubleshooting.md
-
-Community
-
-Issues: GitHub Issues for bug reports
-Discussions: GitHub Discussions for questions
-Wiki: Community-maintained documentation
-Examples: User-contributed programs
-
-Contact
-
-Maintainer: [Your Name]
-Email: [your.email@domain.com]
-Website: [project-website.com]
-
-
-🚀 Quick Reference
-Essential Commands
-bash# Launch system
-python ultimate_launcher.py
-
-# Quick test
-python ultimate_launcher.py --test
-
-# Launch GUI
-python ultimate_launcher.py --gui
-
-# Run specific test
-python master_test_runner.py --category unit
-
-# Interactive assembler
-python ultimate_launcher.py
-# → Option 9
-Key Files
-
-ultimate_launcher.py - Main system entry point
-src/interface.py - GUI interface
-src/MainCPU.py - Core processor
-master_test_runner.py - Test framework
-
-Getting Help
-bashpython ultimate_launcher.py --help
-python master_test_runner.py --help
-python src/interface.py --help
-
-Happy Coding! 🚀 Welcome to the world of RISC-V simulation!
+**Happy Coding! Welcome to RISC-V simulation!** 🚀

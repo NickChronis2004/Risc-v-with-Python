@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Ultimate RISC-V System Launcher 🚀
@@ -36,6 +35,44 @@ class Colors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
+
+def get_test_path(filename):
+    """Find test files in UnitTests directory"""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Αν τρέχουμε από src/, ψάχνε στο UnitTests/
+    if current_dir.endswith('src'):
+        test_path = os.path.join(current_dir, 'UnitTests', filename)
+    else:
+        # Αν τρέχουμε από root, ψάχνε στο src/UnitTests/
+        test_path = os.path.join(current_dir, 'src', 'UnitTests', filename)
+    
+    if os.path.exists(test_path):
+        return test_path
+    
+    # Fallback: ψάχνε στο τρέχον directory
+    fallback_path = os.path.join(current_dir, filename)
+    return fallback_path if os.path.exists(fallback_path) else test_path
+
+
+def get_gui_path(filename):
+    """Find GUI files"""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    # Δοκίμασε διάφορα paths
+    possible_paths = [
+        os.path.join(current_dir, filename),  # Current directory
+        os.path.join(current_dir, 'src', filename),  # src directory
+        os.path.join(current_dir, '..', filename),  # Parent directory
+    ]
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            return path
+    
+    # Return first path as fallback
+    return possible_paths[0]
 
 
 class SystemChecker:
@@ -212,7 +249,7 @@ class SystemLauncher:
             # Run master test runner with unit tests only
             result = subprocess.run([
                 sys.executable, 
-                'master_test_runner.py', 
+                get_test_path('master_test_runner.py'), 
                 '--category', 'unit'
             ], capture_output=False, text=True)
             
@@ -233,7 +270,7 @@ class SystemLauncher:
         try:
             result = subprocess.run([
                 sys.executable, 
-                'master_test_runner.py', 
+                get_test_path('master_test_runner.py'), 
                 '--category', 'integration'
             ], capture_output=False, text=True)
             
@@ -252,7 +289,7 @@ class SystemLauncher:
         try:
             result = subprocess.run([
                 sys.executable, 
-                'master_test_runner.py', 
+                get_test_path('master_test_runner.py'), 
                 '--category', 'performance'
             ], capture_output=False, text=True)
             
@@ -271,7 +308,7 @@ class SystemLauncher:
         try:
             result = subprocess.run([
                 sys.executable, 
-                'real_world_scenarios.py'
+                get_test_path('real_world_scenarios.py')
             ], capture_output=False, text=True)
             
             if result.returncode == 0:
@@ -296,7 +333,7 @@ class SystemLauncher:
                 # Run ultimate test suite
                 result = subprocess.run([
                     sys.executable, 
-                    'ultimate_test_suite.py'
+                    get_test_path('ultimate_test_suite.py')
                 ], capture_output=False, text=True)
                 
                 if result.returncode == 0:
@@ -322,7 +359,7 @@ class SystemLauncher:
             # Launch GUI in separate process
             subprocess.Popen([
                 sys.executable, 
-                'src/interface.py'
+                get_gui_path('interface.py')
             ])
             
             print(f"{Colors.OKGREEN}✅ Main GUI launched successfully{Colors.ENDC}")
@@ -338,7 +375,7 @@ class SystemLauncher:
         try:
             subprocess.Popen([
                 sys.executable, 
-                'monitoring_dashboard.py'
+                get_gui_path('monitoring_dashboard.py')
             ])
             
             print(f"{Colors.OKGREEN}✅ Monitoring dashboard launched{Colors.ENDC}")
@@ -354,7 +391,7 @@ class SystemLauncher:
         try:
             subprocess.Popen([
                 sys.executable, 
-                'gui_test_scenarios.py'
+                get_gui_path('gui_test_scenarios.py')
             ])
             
             print(f"{Colors.OKGREEN}✅ GUI test runner launched{Colors.ENDC}")
@@ -542,7 +579,7 @@ class SystemLauncher:
             # Load and run performance analysis
             result = subprocess.run([
                 sys.executable, 
-                'ultimate_test_suite.py'
+                get_test_path('ultimate_test_suite.py')
             ], capture_output=True, text=True)
             
             print("Performance analysis results:")
@@ -559,7 +596,7 @@ class SystemLauncher:
             # Run comprehensive testing and generate report
             subprocess.run([
                 sys.executable, 
-                'master_test_runner.py', 
+                get_test_path('master_test_runner.py'), 
                 '--quick'
             ], capture_output=False)
             
@@ -574,9 +611,18 @@ class SystemLauncher:
         
         # Look for recent test reports
         report_files = []
+        
+        # Check current directory
         for file in os.listdir('.'):
             if file.startswith('risc_v_test_report_') and file.endswith('.json'):
                 report_files.append(file)
+        
+        # Check UnitTests directory
+        unittest_dir = os.path.join('src', 'UnitTests')
+        if os.path.exists(unittest_dir):
+            for file in os.listdir(unittest_dir):
+                if file.startswith('risc_v_') and file.endswith('.json'):
+                    report_files.append(os.path.join('UnitTests', file))
         
         if not report_files:
             print("No test reports found")
@@ -608,12 +654,19 @@ class SystemLauncher:
                     zipf.write(file, f"source/{file.name}")
                 
                 # Add test files
-                for file in Path('src/UnitTests').glob('*.py'):
-                    zipf.write(file, f"tests/{file.name}")
+                unittest_path = Path('src/UnitTests')
+                if unittest_path.exists():
+                    for file in unittest_path.glob('*.py'):
+                        zipf.write(file, f"tests/{file.name}")
                 
                 # Add any report files
                 for file in Path('.').glob('risc_v_*.json'):
                     zipf.write(file, f"reports/{file.name}")
+                
+                # Add UnitTests report files
+                if unittest_path.exists():
+                    for file in unittest_path.glob('risc_v_*.json'):
+                        zipf.write(file, f"reports/{file.name}")
                 
                 # Add documentation files
                 if Path('README.md').exists():
@@ -643,7 +696,7 @@ class SystemLauncher:
         try:
             result = subprocess.run([
                 sys.executable, 
-                'master_test_runner.py', 
+                get_test_path('master_test_runner.py'), 
                 '--quick'
             ], capture_output=True, text=True, timeout=30)
             
