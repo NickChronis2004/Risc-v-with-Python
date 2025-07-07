@@ -130,7 +130,7 @@ class InstructionDecoder:
         inst_name = inst_info['name']
 
         # Instructions that need SIGNED immediates (offsets)
-        if inst_name in ['LW']:  # Load instructions need signed offsets
+        if inst_name in []:  # Load instructions need signed offsets
             # Handle signed immediate (4-bit signed: -8 to +7)
             if imm & 0x8:  # If MSB is 1, it's negative
                 signed_imm = imm - 16
@@ -173,11 +173,9 @@ class InstructionDecoder:
         rs1 = (instruction >> 4) & 0xF   # Bits 7-4:  Source register 1 (address)
         imm = instruction & 0xF          # Bits 3-0:  Offset (4-bit)
         
-        # Handle signed offset
-        if imm & 0x8:
-            signed_offset = imm - 16
-        else:
-            signed_offset = imm
+        # For SW operations, treat offset as unsigned (0-15)
+        # SW is used for array indexing, not relative addressing
+        signed_offset = imm  # Keep as unsigned (0-15)
         
         assembly = f"sw x{rs2}, {signed_offset}(x{rs1})"
         

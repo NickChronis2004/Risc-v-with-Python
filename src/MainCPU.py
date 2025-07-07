@@ -222,8 +222,8 @@ class RiscVProcessor:
         offset = decoded["offset"]
         
         # Handle negative offset
-        if offset < 0:
-            offset = (1 << 16) + offset
+        # For load operations, treat offset as unsigned (0-15)
+        # No sign extension needed - keep as is
         
         memory_address = (base_address + offset) & 0xFFFF
         
@@ -245,8 +245,8 @@ class RiscVProcessor:
         offset = decoded["offset"]
         
         # Handle negative offset
-        if offset < 0:
-            offset = (1 << 16) + offset
+        # For store operations, treat offset as unsigned (0-15)  
+        # No sign extension needed - keep as is
         
         memory_address = (base_address + offset) & 0xFFFF
         
