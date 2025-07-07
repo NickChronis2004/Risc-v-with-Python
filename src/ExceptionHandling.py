@@ -171,6 +171,30 @@ class EnhancedDataMemory:
         self.memory[index] = value & 0xFFFF
         return True
     
+    def find_non_zero(self):
+        """Find all non-zero values in memory"""
+        non_zero = []
+        for i, value in enumerate(self.memory):
+            if value != 0:
+                address = self.base_address + i
+                non_zero.append((address, value))
+        return non_zero
+
+    def clear_memory(self):
+        """Clear all memory"""
+        self.memory = [0] * self.size
+        print("🧹 Data memory cleared")
+    
+    def get_statistics(self):
+        """Get memory statistics"""
+        return {
+            'total_accesses': self.access_count if hasattr(self, 'access_count') else 0,
+            'reads': self.read_count if hasattr(self, 'read_count') else 0,
+            'writes': self.write_count if hasattr(self, 'write_count') else 0,
+            'size': self.size,
+            'base_address': self.base_address
+        }
+    
     def _is_valid_address(self, address: int) -> bool:
         """Check if address is valid"""
         return self.base_address <= address < self.base_address + self.size
@@ -191,6 +215,34 @@ class EnhancedInstructionMemory:
             return self.error_handler.handle_memory_error(address, "instruction fetch", address)
         
         return self.memory[address]
+    
+    def get_program_size(self):
+        """Get the size of loaded program"""
+        return self.program_size
+
+    def load_program(self, instructions, start_address=0):
+        """Load program into memory"""
+        if start_address < 0 or start_address >= self.size:
+            if hasattr(self, 'error_handler'):
+                self.error_handler.handle_execution_error(
+                    f"Invalid program start address: 0x{start_address:04X}"
+                )
+            return False
+        
+        if len(instructions) + start_address > self.size:
+            if hasattr(self, 'error_handler'):
+                self.error_handler.handle_execution_error(
+                    f"Program too large: {len(instructions)} instructions"
+                )
+            return False
+        
+        # Clear and load
+        self.memory = [0] * self.size
+        for i, instruction in enumerate(instructions):
+            self.memory[start_address + i] = instruction & 0xFFFF
+        
+        self.program_size = len(instructions)
+        return True
     
     def load_program(self, instructions: list, start_address=0):
         """Load program με validation"""
