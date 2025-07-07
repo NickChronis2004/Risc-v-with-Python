@@ -1,0 +1,3 @@
+2025-07-07 02:28:49,026 - RiscV_Processor - INFO - [PROCESSOR] Logging system initialized | Data: {"session_id": "risc_v_session_20250707_022849", "log_dir": "test_enhanced_logs", "console_enabled": true, "file_enabled": true}
+2025-07-07 02:28:49,026 - RiscV_Processor - INFO - [PROCESSOR] Initializing Enhanced RISC-V Processor | Data: {"instruction_memory_size": 64, "data_memory_size": 64}
+2025-07-07 02:28:49,026 - RiscV_Processor - CRITICAL - [PROCESSOR] Failed to initialize processor | Data: {"error": "unsupported format string passed to RiscVLogger.__format__"}

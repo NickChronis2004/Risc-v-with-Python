@@ -1,0 +1,21 @@
+================================================================================
+RISC-V PROCESSOR DEBUG REPORT
+================================================================================
+Session ID: risc_v_session_20250707_022912
+Duration: 0.01 seconds
+Start Time: 2025-07-07 02:29:12.349054
+
+PERFORMANCE SUMMARY
+----------------------------------------
+Instructions Executed: 0
+Memory Reads: 0
+Memory Writes: 0
+Register Reads: 0
+Register Writes: 0
+Alu Operations: 0
+Branches Taken: 0
+Branches Not Taken: 0
+Exceptions Caught: 0
+Instructions per second: 0.00
+
+================================================================================

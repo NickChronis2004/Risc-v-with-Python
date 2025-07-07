@@ -1,0 +1,11 @@
+
+RISC-V Processor Debug Log
+==========================
+Session: 2025-07-07 03:04:47
+Log File: logs/risc_v_debug_20250707_030447.log
+==========================
+
+[03:04:47.985] INFO    | 🚀 Simple Logger Started
+[03:04:47.985] SUCCESS | 🖥️ Processor initialized with logging
+[03:04:47.985] INFO    | 📂 Loading program from: test_factorial.asm
+[03:04:47.986] ERROR   | ERROR #1: Failed to load program from test_factorial.asm

@@ -1,0 +1,26 @@
+
+RISC-V Processor Debug Log
+==========================
+Session: 2025-07-07 03:05:58
+Log File: logs/risc_v_debug_20250707_030558.log
+==========================
+
+[03:05:58.056] INFO    | 🚀 Simple Logger Started
+[03:05:58.056] SUCCESS | 🖥️ Processor initialized with logging
+[03:05:58.056] INFO    | ▶️ Starting execution (max 50 cycles)
+[03:05:58.056] INFO    | Cycle   0 | PC:0x0001 | 0x5107 | addi x1, x0, 7 | {'reg_changes': {'x1': '0→7'}}
+[03:05:58.057] INFO    | Cycle   1 | PC:0x0002 | 0x5205 | addi x2, x0, 5 | {'reg_changes': {'x2': '0→5'}}
+[03:05:58.057] INFO    | Cycle   2 | PC:0x0003 | 0x0312 | add x3, x1, x2 | {'reg_changes': {'x3': '0→12'}}
+[03:05:58.057] INFO    | Cycle   3 | PC:0x0004 | 0x1413 | sub x4, x1, x3 | {'reg_changes': {'x4': '0→65531'}}
+[03:05:58.057] INFO    | Cycle   4 | PC:0x0005 | 0x2534 | and x5, x3, x4 | {'reg_changes': {'x5': '0→8'}}
+[03:05:58.057] INFO    | Cycle   5 | PC:0x0006 | 0x9320 | sw x3, 0(x2)
+[03:05:58.057] INFO    | Cycle   6 | PC:0x0007 | 0x8620 | lw x6, 0(x2) | {'reg_changes': {'x6': '0→12'}}
+[03:05:58.057] INFO    | Cycle   7 | PC:0x0008 | 0xA361 | beq x3, x6, 1
+[03:05:58.058] INFO    | Cycle   8 | PC:0x0009 | 0x5700 | addi x7, x0, 0
+[03:05:58.058] INFO    | Cycle   9 | PC:0x000A | 0x5801 | addi x8, x0, 1 | {'reg_changes': {'x8': '0→1'}}
+[03:05:58.058] INFO    | Cycle  10 | PC:0x000A | 0xF000 | halt
+[03:05:58.058] SUCCESS | Program completed successfully in 11 cycles
+[03:05:58.058] SUCCESS | Execution completed in 11 cycles
+
+
+Session ended: 2025-07-07 03:05:58.059467

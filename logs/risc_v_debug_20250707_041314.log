@@ -1,0 +1,116 @@
+
+RISC-V Processor Debug Log
+==========================
+Session: 2025-07-07 04:13:14
+Log File: logs/risc_v_debug_20250707_041314.log
+==========================
+
+[04:13:14.906] INFO    | 🚀 Simple Logger Started
+[04:13:14.906] SUCCESS | 🖥️ Processor initialized with logging
+[04:13:14.906] INFO    | 📂 Loading program from: src/examples/loop_test.asm
+[04:13:14.908] SUCCESS | Program loaded: 10 instructions
+[04:13:14.908] INFO    | ▶️ Starting execution (max 100 cycles)
+[04:13:14.908] INFO    | Cycle   0 | PC:0x0001 | 0x5101 | addi x1, x0, 1 | {'reg_changes': {'x1': '0→1'}}
+[04:13:14.908] INFO    | Cycle   1 | PC:0x0002 | 0x5205 | addi x2, x0, 5 | {'reg_changes': {'x2': '0→5'}}
+[04:13:14.908] INFO    | Cycle   2 | PC:0x0003 | 0x5300 | addi x3, x0, 0
+[04:13:14.909] INFO    | Cycle   3 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.909] INFO    | Cycle   4 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→1'}}
+[04:13:14.909] INFO    | Cycle   5 | PC:0x0006 | 0xA122 | beq x1, x2, 2
+[04:13:14.909] INFO    | Cycle   6 | PC:0x0007 | 0x5111 | addi x1, x1, 1 | {'reg_changes': {'x1': '1→2'}}
+[04:13:14.909] INFO    | Cycle   7 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.909] INFO    | Cycle   8 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '1→0'}}
+[04:13:14.909] INFO    | Cycle   9 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.909] INFO    | Cycle  10 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→2'}}
+[04:13:14.909] INFO    | Cycle  11 | PC:0x0006 | 0xA122 | beq x1, x2, 2
+[04:13:14.910] INFO    | Cycle  12 | PC:0x0007 | 0x5111 | addi x1, x1, 1 | {'reg_changes': {'x1': '2→3'}}
+[04:13:14.910] INFO    | Cycle  13 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.910] INFO    | Cycle  14 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '2→0'}}
+[04:13:14.910] INFO    | Cycle  15 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.910] INFO    | Cycle  16 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→3'}}
+[04:13:14.910] INFO    | Cycle  17 | PC:0x0006 | 0xA122 | beq x1, x2, 2
+[04:13:14.910] INFO    | Cycle  18 | PC:0x0007 | 0x5111 | addi x1, x1, 1 | {'reg_changes': {'x1': '3→4'}}
+[04:13:14.910] INFO    | Cycle  19 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.910] INFO    | Cycle  20 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '3→0'}}
+[04:13:14.910] INFO    | Cycle  21 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.911] INFO    | Cycle  22 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→4'}}
+[04:13:14.911] INFO    | Cycle  23 | PC:0x0006 | 0xA122 | beq x1, x2, 2
+[04:13:14.911] INFO    | Cycle  24 | PC:0x0007 | 0x5111 | addi x1, x1, 1 | {'reg_changes': {'x1': '4→5'}}
+[04:13:14.911] INFO    | Cycle  25 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.911] INFO    | Cycle  26 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '4→0'}}
+[04:13:14.911] INFO    | Cycle  27 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.911] INFO    | Cycle  28 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.911] INFO    | Cycle  29 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.911] INFO    | Cycle  30 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.911] INFO    | Cycle  31 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.912] INFO    | Cycle  32 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.912] INFO    | Cycle  33 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.912] INFO    | Cycle  34 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.912] INFO    | Cycle  35 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.912] INFO    | Cycle  36 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.912] INFO    | Cycle  37 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.912] INFO    | Cycle  38 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.912] INFO    | Cycle  39 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.912] INFO    | Cycle  40 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.913] INFO    | Cycle  41 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.913] INFO    | Cycle  42 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.913] INFO    | Cycle  43 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.913] INFO    | Cycle  44 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.913] INFO    | Cycle  45 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.913] INFO    | Cycle  46 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.913] INFO    | Cycle  47 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.913] INFO    | Cycle  48 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.913] INFO    | Cycle  49 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.914] INFO    | Cycle  50 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.914] INFO    | Cycle  51 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.914] INFO    | Cycle  52 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.914] INFO    | Cycle  53 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.914] INFO    | Cycle  54 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.914] INFO    | Cycle  55 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.914] INFO    | Cycle  56 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.914] INFO    | Cycle  57 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.915] INFO    | Cycle  58 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.915] INFO    | Cycle  59 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.915] INFO    | Cycle  60 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.915] INFO    | Cycle  61 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.915] INFO    | Cycle  62 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.915] INFO    | Cycle  63 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.915] INFO    | Cycle  64 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.915] INFO    | Cycle  65 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.915] INFO    | Cycle  66 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.916] INFO    | Cycle  67 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.916] INFO    | Cycle  68 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.916] INFO    | Cycle  69 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.916] INFO    | Cycle  70 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.916] INFO    | Cycle  71 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.916] INFO    | Cycle  72 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.916] INFO    | Cycle  73 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.917] INFO    | Cycle  74 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.917] INFO    | Cycle  75 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.917] INFO    | Cycle  76 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.917] INFO    | Cycle  77 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.917] INFO    | Cycle  78 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.917] INFO    | Cycle  79 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.917] INFO    | Cycle  80 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.917] INFO    | Cycle  81 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.917] INFO    | Cycle  82 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.917] INFO    | Cycle  83 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.918] INFO    | Cycle  84 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.918] INFO    | Cycle  85 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.918] INFO    | Cycle  86 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.918] INFO    | Cycle  87 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.918] INFO    | Cycle  88 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.918] INFO    | Cycle  89 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.918] INFO    | Cycle  90 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.918] INFO    | Cycle  91 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.918] INFO    | Cycle  92 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.918] INFO    | Cycle  93 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.919] INFO    | Cycle  94 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.919] INFO    | Cycle  95 | PC:0x0002 | 0xA00B | beq x0, x0, -5
+[04:13:14.919] INFO    | Cycle  96 | PC:0x0003 | 0x5300 | addi x3, x0, 0 | {'reg_changes': {'x3': '5→0'}}
+[04:13:14.919] INFO    | Cycle  97 | PC:0x0004 | 0x9100 | sw x1, 0(x0)
+[04:13:14.919] INFO    | Cycle  98 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→5'}}
+[04:13:14.919] INFO    | Cycle  99 | PC:0x0007 | 0xA122 | beq x1, x2, 2
+[04:13:14.919] WARNING | WARNING: Execution stopped after 100 cycles
+
+
+Session ended: 2025-07-07 04:13:14.920207

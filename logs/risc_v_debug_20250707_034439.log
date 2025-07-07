@@ -1,0 +1,22 @@
+
+RISC-V Processor Debug Log
+==========================
+Session: 2025-07-07 03:44:39
+Log File: logs/risc_v_debug_20250707_034439.log
+==========================
+
+[03:44:39.137] INFO    | 🚀 Simple Logger Started
+[03:44:39.137] SUCCESS | 🖥️ Processor initialized with logging
+[03:44:39.137] INFO    | 📂 Loading program from: src/examples/print_test.asm
+[03:44:39.138] SUCCESS | Program loaded: 5 instructions
+[03:44:39.138] INFO    | ▶️ Starting execution (max 100 cycles)
+[03:44:39.139] INFO    | Cycle   0 | PC:0x0001 | 0x5105 | addi x1, x0, 5 | {'reg_changes': {'x1': '0→5'}}
+[03:44:39.139] INFO    | Cycle   1 | PC:0x0002 | 0x5207 | addi x2, x0, 7 | {'reg_changes': {'x2': '0→7'}}
+[03:44:39.139] INFO    | Cycle   2 | PC:0x0003 | 0x0312 | add x3, x1, x2 | {'reg_changes': {'x3': '0→12'}}
+[03:44:39.139] INFO    | Cycle   3 | PC:0x0004 | 0x1431 | sub x4, x3, x1 | {'reg_changes': {'x4': '0→7'}}
+[03:44:39.139] INFO    | Cycle   4 | PC:0x0004 | 0xF000 | halt
+[03:44:39.139] SUCCESS | Program completed successfully in 5 cycles
+[03:44:39.139] SUCCESS | Execution completed in 5 cycles
+
+
+Session ended: 2025-07-07 03:44:39.140590

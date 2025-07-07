@@ -1,0 +1,19 @@
+2025-07-07 02:29:12,349 - RiscV_Processor - INFO - [PROCESSOR] Logging system initialized | Data: {"session_id": "risc_v_session_20250707_022912", "log_dir": "unified_debug_logs", "console_enabled": true, "file_enabled": true}
+2025-07-07 02:29:12,349 - RiscV_Processor - INFO - [PROCESSOR] Advanced debugger initialized
+2025-07-07 02:29:12,349 - RiscV_Processor - INFO - [PROCESSOR] Unified debug interface initialized
+2025-07-07 02:29:12,349 - RiscV_Processor - INFO - [PROCESSOR] Test case added: Basic Arithmetic | Data: {"program_size": 4, "timeout": 100}
+2025-07-07 02:29:12,350 - RiscV_Processor - INFO - [PROCESSOR] Test case added: Memory Operations | Data: {"program_size": 4, "timeout": 100}
+2025-07-07 02:29:12,350 - RiscV_Processor - INFO - [PROCESSOR] Test case added: Branch Operations | Data: {"program_size": 6, "timeout": 100}
+2025-07-07 02:29:12,350 - RiscV_Processor - INFO - [PROCESSOR] Running 3 automated tests
+2025-07-07 02:29:12,351 - RiscV_Processor - INFO - [PROCESSOR] Test PASSED: Basic Arithmetic | Data: {"name": "Basic Arithmetic", "passed": true, "execution_time": 0.0004324913024902344, "cycles": 4, "instructions": 4}
+2025-07-07 02:29:12,351 - RiscV_Processor - INFO - [PROCESSOR] Test PASSED: Memory Operations | Data: {"name": "Memory Operations", "passed": true, "execution_time": 0.00040411949157714844, "cycles": 4, "instructions": 4}
+2025-07-07 02:29:12,352 - RiscV_Processor - INFO - [PROCESSOR] Test PASSED: Branch Operations | Data: {"name": "Branch Operations", "passed": true, "execution_time": 0.0003371238708496094, "cycles": 6, "instructions": 6}
+2025-07-07 02:29:12,352 - RiscV_Processor - INFO - [PROCESSOR] Automated testing completed | Data: {"total_tests": 3, "passed": 3, "failed": 0, "success_rate": 100.0, "results": [{"name": "Basic Arithmetic", "passed": true, "execution_time": 0.0004324913024902344, "cycles": 4, "instructions": 4}, {"name": "Memory Operations", "passed": true, "execution_time": 0.00040411949157714844, "cycles": 4, "instructions": 4}, {"name": "Branch Operations", "passed": true, "execution_time": 0.0003371238708496094, "cycles": 6, "instructions": 6}]}
+2025-07-07 02:29:12,353 - RiscV_Processor - INFO - [PROCESSOR] Shutting down unified debug interface
+2025-07-07 02:29:12,353 - RiscV_Processor - INFO - [PROCESSOR] Real-time monitoring stopped
+2025-07-07 02:29:12,353 - RiscV_Processor - INFO - [PROCESSOR] Performance profiling stopped | Data: {"duration_seconds": 0, "data_collected": 0}
+2025-07-07 02:29:12,353 - RiscV_Processor - INFO - [PROCESSOR] Debugging session stopped
+2025-07-07 02:29:12,353 - RiscV_Processor - INFO - [PROCESSOR] Performance snapshot | Data: {"timestamp": "2025-07-07T02:29:12.353612", "runtime_seconds": 0.004558, "counters": {"instructions_executed": 0, "memory_reads": 0, "memory_writes": 0, "register_reads": 0, "register_writes": 0, "alu_operations": 0, "branches_taken": 0, "branches_not_taken": 0, "exceptions_caught": 0}, "cpu_state": {}, "instructions_per_second": 0.0, "memory_accesses_per_second": 0.0}
+2025-07-07 02:29:12,354 - RiscV_Processor - INFO - [PROCESSOR] Session summary saved: unified_debug_logs\risc_v_session_20250707_022912_summary.json
+2025-07-07 02:29:12,355 - RiscV_Processor - INFO - [PROCESSOR] Debug report generated: unified_debug_logs\risc_v_session_20250707_022912_debug_report.txt
+2025-07-07 02:29:12,355 - RiscV_Processor - INFO - [PROCESSOR] Logging session ended | Data: {"summary_file": "unified_debug_logs\\risc_v_session_20250707_022912_summary.json", "total_instructions": 0, "total_errors": 0}

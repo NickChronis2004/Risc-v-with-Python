@@ -45,7 +45,11 @@ def check_risc_v_files():
         "InstructionDecoder.py",
         "ControlUnit.py",
         "Assembler.py",
-        "MainCPU.py"
+        "MainCPU.py",
+        "ExceptionHandling.py",
+        "interface.py",
+        "SimpleLogging.py",
+        "LoggedMainCPU.py"
     ]
     
     missing_files = []

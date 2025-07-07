@@ -1,0 +1,116 @@
+
+RISC-V Processor Debug Log
+==========================
+Session: 2025-07-07 03:27:09
+Log File: logs/risc_v_debug_20250707_032709.log
+==========================
+
+[03:27:09.021] INFO    | 🚀 Simple Logger Started
+[03:27:09.021] SUCCESS | 🖥️ Processor initialized with logging
+[03:27:09.021] INFO    | 📂 Loading program from: src/examples/my_program.asm
+[03:27:09.022] SUCCESS | Program loaded: 9 instructions
+[03:27:09.022] INFO    | ▶️ Starting execution (max 100 cycles)
+[03:27:09.022] INFO    | Cycle   0 | PC:0x0001 | 0x510F | addi x1, x0, -1 | {'reg_changes': {'x1': '0→15'}}
+[03:27:09.022] INFO    | Cycle   1 | PC:0x0002 | 0x5203 | addi x2, x0, 3 | {'reg_changes': {'x2': '0→3'}}
+[03:27:09.023] INFO    | Cycle   2 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.023] INFO    | Cycle   3 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '0→3'}}
+[03:27:09.023] INFO    | Cycle   4 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '15→30'}}
+[03:27:09.023] INFO    | Cycle   5 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.023] INFO    | Cycle   6 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.023] INFO    | Cycle   7 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.023] INFO    | Cycle   8 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '3→6'}}
+[03:27:09.023] INFO    | Cycle   9 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '30→45'}}
+[03:27:09.023] INFO    | Cycle  10 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.023] INFO    | Cycle  11 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.024] INFO    | Cycle  12 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.024] INFO    | Cycle  13 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '6→9'}}
+[03:27:09.024] INFO    | Cycle  14 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '45→60'}}
+[03:27:09.024] INFO    | Cycle  15 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.024] INFO    | Cycle  16 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.024] INFO    | Cycle  17 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.024] INFO    | Cycle  18 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '9→12'}}
+[03:27:09.024] INFO    | Cycle  19 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '60→75'}}
+[03:27:09.024] INFO    | Cycle  20 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.024] INFO    | Cycle  21 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.025] INFO    | Cycle  22 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.025] INFO    | Cycle  23 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '12→15'}}
+[03:27:09.025] INFO    | Cycle  24 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '75→90'}}
+[03:27:09.025] INFO    | Cycle  25 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.025] INFO    | Cycle  26 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.025] INFO    | Cycle  27 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.025] INFO    | Cycle  28 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '15→18'}}
+[03:27:09.025] INFO    | Cycle  29 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '90→105'}}
+[03:27:09.025] INFO    | Cycle  30 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.025] INFO    | Cycle  31 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.025] INFO    | Cycle  32 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.026] INFO    | Cycle  33 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '18→21'}}
+[03:27:09.026] INFO    | Cycle  34 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '105→120'}}
+[03:27:09.026] INFO    | Cycle  35 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.026] INFO    | Cycle  36 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.026] INFO    | Cycle  37 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.026] INFO    | Cycle  38 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '21→24'}}
+[03:27:09.026] INFO    | Cycle  39 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '120→135'}}
+[03:27:09.026] INFO    | Cycle  40 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.027] INFO    | Cycle  41 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.027] INFO    | Cycle  42 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.027] INFO    | Cycle  43 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '24→27'}}
+[03:27:09.027] INFO    | Cycle  44 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '135→150'}}
+[03:27:09.027] INFO    | Cycle  45 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.027] INFO    | Cycle  46 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.027] INFO    | Cycle  47 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.027] INFO    | Cycle  48 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '27→30'}}
+[03:27:09.027] INFO    | Cycle  49 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '150→165'}}
+[03:27:09.028] INFO    | Cycle  50 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.028] INFO    | Cycle  51 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.028] INFO    | Cycle  52 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.028] INFO    | Cycle  53 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '30→33'}}
+[03:27:09.028] INFO    | Cycle  54 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '165→180'}}
+[03:27:09.028] INFO    | Cycle  55 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.028] INFO    | Cycle  56 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.028] INFO    | Cycle  57 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.028] INFO    | Cycle  58 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '33→36'}}
+[03:27:09.028] INFO    | Cycle  59 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '180→195'}}
+[03:27:09.029] INFO    | Cycle  60 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.029] INFO    | Cycle  61 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.029] INFO    | Cycle  62 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.029] INFO    | Cycle  63 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '36→39'}}
+[03:27:09.029] INFO    | Cycle  64 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '195→210'}}
+[03:27:09.029] INFO    | Cycle  65 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.029] INFO    | Cycle  66 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.029] INFO    | Cycle  67 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.030] INFO    | Cycle  68 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '39→42'}}
+[03:27:09.030] INFO    | Cycle  69 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '210→225'}}
+[03:27:09.030] INFO    | Cycle  70 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.030] INFO    | Cycle  71 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.030] INFO    | Cycle  72 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.030] INFO    | Cycle  73 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '42→45'}}
+[03:27:09.030] INFO    | Cycle  74 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '225→240'}}
+[03:27:09.031] INFO    | Cycle  75 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.031] INFO    | Cycle  76 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.031] INFO    | Cycle  77 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.031] INFO    | Cycle  78 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '45→48'}}
+[03:27:09.031] INFO    | Cycle  79 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '240→255'}}
+[03:27:09.031] INFO    | Cycle  80 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.031] INFO    | Cycle  81 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.031] INFO    | Cycle  82 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.031] INFO    | Cycle  83 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '48→51'}}
+[03:27:09.031] INFO    | Cycle  84 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '255→270'}}
+[03:27:09.032] INFO    | Cycle  85 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.032] INFO    | Cycle  86 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.032] INFO    | Cycle  87 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.032] INFO    | Cycle  88 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '51→54'}}
+[03:27:09.032] INFO    | Cycle  89 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '270→285'}}
+[03:27:09.032] INFO    | Cycle  90 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.032] INFO    | Cycle  91 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.032] INFO    | Cycle  92 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.032] INFO    | Cycle  93 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '54→57'}}
+[03:27:09.032] INFO    | Cycle  94 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '285→300'}}
+[03:27:09.032] INFO    | Cycle  95 | PC:0x0001 | 0xB10C | bne x1, x0, -4
+[03:27:09.033] INFO    | Cycle  96 | PC:0x0002 | 0x5203 | addi x2, x0, 3
+[03:27:09.033] INFO    | Cycle  97 | PC:0x0003 | 0xA103 | beq x1, x0, 3
+[03:27:09.033] INFO    | Cycle  98 | PC:0x0004 | 0x0332 | add x3, x3, x2 | {'reg_changes': {'x3': '57→60'}}
+[03:27:09.033] INFO    | Cycle  99 | PC:0x0005 | 0x511F | addi x1, x1, -1 | {'reg_changes': {'x1': '300→315'}}
+[03:27:09.033] WARNING | WARNING: Execution stopped after 100 cycles
+
+
+Session ended: 2025-07-07 03:27:09.033960

@@ -1,0 +1,25 @@
+
+RISC-V Processor Debug Log
+==========================
+Session: 2025-07-07 04:07:05
+Log File: logs/risc_v_debug_20250707_040705.log
+==========================
+
+[04:07:05.471] INFO    | 🚀 Simple Logger Started
+[04:07:05.471] SUCCESS | 🖥️ Processor initialized with logging
+[04:07:05.471] INFO    | 📂 Loading program from: src/examples/my_program.asm
+[04:07:05.472] SUCCESS | Program loaded: 8 instructions
+[04:07:05.472] INFO    | ▶️ Starting execution (max 100 cycles)
+[04:07:05.473] INFO    | Cycle   0 | PC:0x0001 | 0x5108 | addi x1, x0, -8 | {'reg_changes': {'x1': '0→8'}}
+[04:07:05.473] INFO    | Cycle   1 | PC:0x0002 | 0x5203 | addi x2, x0, 3 | {'reg_changes': {'x2': '0→3'}}
+[04:07:05.473] INFO    | Cycle   2 | PC:0x0003 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '0→8'}}
+[04:07:05.473] INFO    | Cycle   3 | PC:0x0004 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '8→16'}}
+[04:07:05.473] INFO    | Cycle   4 | PC:0x0005 | 0x0331 | add x3, x3, x1 | {'reg_changes': {'x3': '16→24'}}
+[04:07:05.473] INFO    | Cycle   5 | PC:0x0006 | 0x9300 | sw x3, 0(x0)
+[04:07:05.473] INFO    | Cycle   6 | PC:0x0007 | 0x8400 | lw x4, 0(x0)
+[04:07:05.474] INFO    | Cycle   7 | PC:0x0007 | 0xF000 | halt
+[04:07:05.474] SUCCESS | Program completed successfully in 8 cycles
+[04:07:05.474] SUCCESS | Execution completed in 8 cycles
+
+
+Session ended: 2025-07-07 04:07:05.475065

@@ -1,0 +1,43 @@
+{
+  "session_info": {
+    "session_id": "risc_v_session_20250707_022912",
+    "start_time": "2025-07-07T02:29:12.349054",
+    "end_time": "2025-07-07T02:29:12.353797",
+    "duration_seconds": 0.004745
+  },
+  "counters": {
+    "instructions_executed": 0,
+    "memory_reads": 0,
+    "memory_writes": 0,
+    "register_reads": 0,
+    "register_writes": 0,
+    "alu_operations": 0,
+    "branches_taken": 0,
+    "branches_not_taken": 0,
+    "exceptions_caught": 0
+  },
+  "execution_log": [],
+  "error_log": [],
+  "performance_log": [
+    {
+      "timestamp": "2025-07-07T02:29:12.353612",
+      "runtime_seconds": 0.004558,
+      "counters": {
+        "instructions_executed": 0,
+        "memory_reads": 0,
+        "memory_writes": 0,
+        "register_reads": 0,
+        "register_writes": 0,
+        "alu_operations": 0,
+        "branches_taken": 0,
+        "branches_not_taken": 0,
+        "exceptions_caught": 0
+      },
+      "cpu_state": {},
+      "instructions_per_second": 0.0,
+      "memory_accesses_per_second": 0.0
+    }
+  ],
+  "memory_access_log": [],
+  "register_change_log": []
+}
