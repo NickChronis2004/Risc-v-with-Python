@@ -555,4 +555,19 @@ python ../ultimate_launcher.py
 - 💾 **Complete Data Export**
 - 🎓 **Educational Resources**
 
+
+## 🤝 Contributing and Communication
+
+This project is open source and welcomes contributions from the community! 
+
+### How to Contribute
+- 🐛 **Report bugs** - Found an issue? Let us know!
+- 💡 **Suggest features** - Have an idea? We'd love to hear it!
+- 🛠️ **Submit pull requests** - Ready to contribute code?
+- 📚 **Improve documentation** - Help make this project more accessible
+
+### Get in Touch
+For questions, suggestions, or collaboration opportunities:
+**Contact:** nickchronis2004@example.com
+
 **Happy Coding! Welcome to RISC-V simulation!** 🚀
