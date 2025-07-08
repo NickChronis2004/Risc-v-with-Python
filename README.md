@@ -562,6 +562,108 @@ python ../ultimate_launcher.py
 - 🎓 **Educational Resources**
 
 
+
+## ⚠️ Current Limitations
+
+While our RISC-V simulator provides comprehensive educational functionality, there are some differences compared to full-scale implementations like RARS or real hardware:
+
+### 🔧 **Architecture Limitations**
+- **16-bit processor** (vs 32/64-bit in production RISC-V)
+- **Simplified instruction set** - focuses on core RISC-V instructions for educational purposes
+- **Limited register count** - 16 registers (x0-x15) vs full 32 registers (x0-x31)
+- **Basic memory model** - simplified address space without virtual memory management
+
+### 💾 **Memory & System**
+- **No cache simulation** - direct memory access for simplicity
+- **No virtual memory** - flat address space model
+- **Limited memory size** - 1024 words instruction + 1024 words data memory
+- **No MMU simulation** - memory management unit not implemented
+
+### 🔄 **Instruction Set**
+- **Core RISC-V subset** - implements fundamental instructions (RV16I-like)
+- **No floating-point** - integer operations only
+- **No atomic operations** - single-threaded execution model
+- **No compressed instructions** - standard 16-bit encoding only
+- **No privileged instructions** - user-mode simulation only
+
+### ⚡ **Advanced Features**
+- **No pipeline visualization** - sequential execution model
+- **No branch prediction** - simple branch handling
+- **No interrupt system** - polling-based I/O only
+- **No multi-core simulation** - single processor core
+- **No system calls** - basic halt/nop operations
+
+### 🎯 **Performance & Scale**
+- **Python-based simulation** - slower than native C/C++ simulators
+- **Educational focus** - optimized for learning rather than performance
+- **Limited program size** - suitable for academic examples and small programs
+- **No ELF file support** - custom assembly format only
+
+### 🛠️ **Development Tools**
+- **Basic assembler** - no macro support or advanced directives
+- **No linker** - single-file assembly programs
+- **No debugger integration** - built-in debugging through GUI only
+- **No profiling tools** - basic performance metrics only
+
+### 📊 **Comparison with Production Systems**
+
+| Feature | Our Simulator | RARS/MARS | Real RISC-V |
+|---------|---------------|-----------|-------------|
+| Bit Width | 16-bit | 32-bit | 32/64-bit |
+| Registers | 16 (x0-x15) | 32 (x0-x31) | 32 (x0-x31) |
+| Instruction Set | Core subset | Full RV32I | RV32I/64I + extensions |
+| Memory Model | Simplified | Virtual memory | Full MMU |
+| Floating Point | ❌ | ✅ | ✅ |
+| System Calls | ❌ | ✅ | ✅ |
+| Interrupts | ❌ | ✅ | ✅ |
+| Cache Simulation | ❌ | Optional | Hardware |
+| Pipeline | ❌ | Optional | Hardware |
+| Multi-core | ❌ | ❌ | ✅ |
+
+### 🎓 **Educational Focus**
+
+These limitations are **intentional design choices** to:
+- ✅ **Simplify learning** - focus on core concepts without overwhelming complexity
+- ✅ **Reduce cognitive load** - students can understand the complete system
+- ✅ **Enable experimentation** - modify and extend the simulator easily
+- ✅ **Maintain clarity** - every component is visible and comprehensible
+- ✅ **Ensure reliability** - fewer components mean fewer potential bugs
+
+### 🚀 **Future Enhancements**
+
+Potential areas for expansion (contributions welcome!):
+- [ ] 32-bit architecture support
+- [ ] Extended instruction set (multiplication, division)
+- [ ] Basic floating-point operations
+- [ ] Simple cache simulation
+- [ ] Pipeline visualization
+- [ ] ELF file loading
+- [ ] Advanced debugging features
+- [ ] Performance profiling tools
+- [ ] System call interface
+
+### 💡 **When to Use This Simulator**
+
+**✅ Perfect for:**
+- Computer architecture courses
+- Assembly language learning
+- RISC-V concept introduction
+- Educational research projects
+- Prototyping simple algorithms
+- Understanding processor internals
+
+**❌ Not suitable for:**
+- Production software development
+- Performance-critical simulations
+- Complex system software testing
+- Real-world embedded development
+- Advanced research requiring full RISC-V compliance
+
+---
+*Remember: This is an educational tool designed to make processor architecture accessible and understandable. For production RISC-V development, consider using official tools like RARS, Spike, or hardware platforms.*
+
+
+
 ## 🤝 Contributing and Communication
 
 This project is open source and welcomes contributions from the community! 
