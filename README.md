@@ -1,3 +1,9 @@
+![Python](https://img.shields.io/badge/Python-3.7+-blue)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-11,679-green)
+![Tests](https://img.shields.io/badge/Test%20Coverage-44.5%25-orange)
+![License](https://img.shields.io/badge/License-MIT-blue)
+
+
 # 🚀 RISC-V 16-bit Processor Simulator System
 
 A comprehensive, educational RISC-V processor simulator with real-time monitoring, advanced debugging capabilities, and production-ready testing framework.
