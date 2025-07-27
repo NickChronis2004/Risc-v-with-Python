@@ -96,7 +96,7 @@ class MasterTestRunner:
         print(f"   ✅ Python {python_version.major}.{python_version.minor}.{python_version.micro}")
         
         # Check src directory
-        src_path = Path('/Risc-v-with-Python/src')
+        src_path = Path(__file__).parent.parent
         if not src_path.exists():
             print(f"{Colors.FAIL}❌ src/ directory not found{Colors.ENDC}")
             sys.exit(1)

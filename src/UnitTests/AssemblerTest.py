@@ -10,6 +10,8 @@ Unit Tests για τον RISC-V Assembler
 
 import os
 import sys
+import codecs
+sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
 
 # Προσθήκη του parent directory στο Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

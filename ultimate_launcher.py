@@ -122,9 +122,12 @@ class SystemChecker:
         ]
         
         missing_files = []
-        for file_path in required_files:
-            if not Path(file_path).exists():
-                missing_files.append(file_path)
+        src_path = Path(__file__).parent / "src"  # Προσθέτουμε το src path
+        
+        for file_name in required_files:
+            file_path = src_path / file_name  # Φτιάχνουμε το πλήρες path
+            if not file_path.exists():
+                missing_files.append(file_name)
         
         if missing_files:
             print(f"{Colors.FAIL}❌ Missing required files:{Colors.ENDC}")
@@ -580,7 +583,7 @@ class SystemLauncher:
             result = subprocess.run([
                 sys.executable, 
                 get_test_path('ultimate_test_suite.py')
-            ], capture_output=True, text=True)
+            ], capture_output=True, text=True, encoding='utf-8', errors='replace')
             
             print("Performance analysis results:")
             print(result.stdout)

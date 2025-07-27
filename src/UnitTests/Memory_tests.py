@@ -14,6 +14,8 @@ Unit Tests για το Memory System
 import os
 import sys
 import tempfile
+import codecs
+sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
 
 # Προσθήκη του parent directory στο Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
