@@ -550,11 +550,9 @@ quit        # Exit assembler
 # 1. First-time setup
 python src/setup_script.py
 
-# 2. Navigate to working directory  
-cd src
-
-# 3. Launch system
-python ../ultimate_launcher.py
+# 2. Launch system
+cd.. (navigate to the root directory)
+python ultimate_launcher.py
 
 # 4. Most popular options:
 #    Option 9: Interactive Assembler
