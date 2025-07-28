@@ -1,18 +1,18 @@
 {
-  "timestamp": "20250727_194700",
+  "timestamp": "20250728_123842",
   "summary": {
     "total_tests": 14,
-    "passed_tests": 10,
-    "failed_tests": 4,
-    "success_rate": 71.42857142857143,
-    "total_duration": 0.7480666637420654
+    "passed_tests": 6,
+    "failed_tests": 8,
+    "success_rate": 42.857142857142854,
+    "total_duration": 0.3169081211090088
   },
   "categories": {
     "unit_tests": {
       "total": 4,
-      "passed": 4,
-      "failed": 0,
-      "success_rate": 100.0
+      "passed": 0,
+      "failed": 4,
+      "success_rate": 0.0
     },
     "integration_tests": {
       "total": 3,
@@ -42,51 +42,51 @@
   "detailed_results": [
     {
       "name": "RegisterFile Tests",
-      "passed": true,
-      "duration": 0.03513646125793457,
-      "details": "All tests passed",
-      "error": null,
-      "timestamp": "2025-07-27T19:46:59.720586"
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/RF_Tests.py",
+      "timestamp": "2025-07-28T12:38:42.399443"
     },
     {
       "name": "ALU Tests",
-      "passed": true,
-      "duration": 0.03350472450256348,
-      "details": "All tests passed",
-      "error": null,
-      "timestamp": "2025-07-27T19:46:59.754091"
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/ALU_tests.py",
+      "timestamp": "2025-07-28T12:38:42.399443"
     },
     {
       "name": "Memory Tests",
-      "passed": true,
-      "duration": 0.19975829124450684,
-      "details": "All tests passed",
-      "error": null,
-      "timestamp": "2025-07-27T19:46:59.953849"
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/Memory_tests.py",
+      "timestamp": "2025-07-28T12:38:42.399443"
     },
     {
       "name": "Assembler Tests",
-      "passed": true,
-      "duration": 0.13171148300170898,
-      "details": "All tests passed",
-      "error": null,
-      "timestamp": "2025-07-27T19:47:00.085561"
+      "passed": false,
+      "duration": 0,
+      "details": "Test file not found",
+      "error": "src/UnitTests/AssemblerTest.py",
+      "timestamp": "2025-07-28T12:38:42.399443"
     },
     {
       "name": "Complete Processor Workflow",
       "passed": false,
-      "duration": 0.007023334503173828,
+      "duration": 0.005525350570678711,
       "details": "x6 should be 100, got 4",
       "error": "x6 should be 100, got 4",
-      "timestamp": "2025-07-27T19:47:00.092584"
+      "timestamp": "2025-07-28T12:38:42.404968"
     },
     {
       "name": "Assembler-Processor Pipeline",
       "passed": false,
-      "duration": 0.0030846595764160156,
+      "duration": 0.0030112266540527344,
       "details": "Pipeline execution failed",
       "error": "Pipeline execution failed",
-      "timestamp": "2025-07-27T19:47:00.095669"
+      "timestamp": "2025-07-28T12:38:42.407980"
     },
     {
       "name": "Memory System Integration",
@@ -94,7 +94,7 @@
       "duration": 0.0,
       "details": "IMem: 4 instructions, DMem: 3 operations",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.095669"
+      "timestamp": "2025-07-28T12:38:42.407980"
     },
     {
       "name": "Execution Speed Benchmark",
@@ -102,47 +102,47 @@
       "duration": 0.0,
       "details": "Instructions: 81, Speed: 0 inst/s, 0 cycles/s",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.095669"
+      "timestamp": "2025-07-28T12:38:42.407980"
     },
     {
       "name": "Memory Performance",
       "passed": true,
-      "duration": 0.007408857345581055,
-      "details": "Writes: 235821 ops/s, Reads: 315622 ops/s",
+      "duration": 0.003007173538208008,
+      "details": "Writes: 997219 ops/s, Reads: 498906 ops/s",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.103077"
+      "timestamp": "2025-07-28T12:38:42.411989"
     },
     {
       "name": "Assembly Performance",
       "passed": true,
-      "duration": 0.002028226852416992,
-      "details": "Lines: 153, Speed: 75435 lines/s, Instructions: 151",
+      "duration": 0.0020172595977783203,
+      "details": "Lines: 153, Speed: 152430 lines/s, Instructions: 151",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.105106"
+      "timestamp": "2025-07-28T12:38:42.414007"
     },
     {
       "name": "GUI Components",
       "passed": true,
-      "duration": 0.0030066967010498047,
+      "duration": 0.0025064945220947266,
       "details": "Components: tkinter=True, customtkinter=True, main_gui=False",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.108112"
+      "timestamp": "2025-07-28T12:38:42.416513"
     },
     {
       "name": "GUI Workflow",
       "passed": false,
-      "duration": 0.06801152229309082,
+      "duration": 0.0623779296875,
       "details": "GUI initialization failed",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.176124"
+      "timestamp": "2025-07-28T12:38:42.478891"
     },
     {
       "name": "Development Workflow",
       "passed": false,
-      "duration": 0.0035839080810546875,
+      "duration": 0.004030942916870117,
       "details": "Fibonacci(1): expected 1, got 2",
       "error": "Fibonacci(1): expected 1, got 2",
-      "timestamp": "2025-07-27T19:47:00.181071"
+      "timestamp": "2025-07-28T12:38:42.484663"
     },
     {
       "name": "Exception Workflow",
@@ -150,7 +150,7 @@
       "duration": 0.0,
       "details": "Graceful error recovery: 4 cycles, final state: x1=10, x2=5",
       "error": null,
-      "timestamp": "2025-07-27T19:47:00.181071"
+      "timestamp": "2025-07-28T12:38:42.484663"
     }
   ]
 }
