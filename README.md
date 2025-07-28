@@ -739,6 +739,6 @@ This project is open source and welcomes contributions from the community!
 
 ### Get in Touch
 For questions, suggestions, or collaboration opportunities:
-**Contact:** nickchronis2004@example.com
+**Contact:** nickchronis2004@gmail.com
 
 **Happy Coding! Welcome to RISC-V simulation!** 🚀
