@@ -1,6 +1,6 @@
 ![Python](https://img.shields.io/badge/Python-3.7+-blue)
-![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-11,679-green)
-![Tests](https://img.shields.io/badge/Test%20Coverage-44.5%25-orange)
+![Lines of Code](https://img.shields.io/badge/Lines%20of%20Code-~12k-green)
+![Tests](https://img.shields.io/badge/Test%20Coverage-45%25-orange)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 
