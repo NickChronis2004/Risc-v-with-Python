@@ -15,8 +15,13 @@ Comprehensive testing για το διαστημικό RISC-V simulator system:
 import os
 
 import sys
-import codecs
-sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+try:
+    import codecs
+    # Safely enable UTF-8 without breaking non TTY environments
+    if hasattr(sys.stdout, 'detach'):
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+except Exception:
+    pass
 import time
 import random
 import tempfile

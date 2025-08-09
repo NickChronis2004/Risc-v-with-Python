@@ -13,8 +13,12 @@ Unit Tests για το RegisterFile
 
 import os
 import sys
-import codecs
-sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+try:
+    import codecs
+    if hasattr(sys.stdout, 'detach'):
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+except Exception:
+    pass
 
 # Προσθήκη του parent directory στο Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

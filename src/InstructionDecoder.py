@@ -126,20 +126,11 @@ class InstructionDecoder:
         rs1 = (instruction >> 4) & 0xF   # Bits 7-4:  Source register 1
         imm = instruction & 0xF          # Bits 3-0:  Immediate value (4-bit)
         
-        # 🎯 Context-aware immediate handling
+        # For this ISA subset:
+        # - ADDI/ANDI/ORI use unsigned 4-bit immediates (0..15)
+        # - LW encodes offset in imm, also treated as unsigned (0..15)
         inst_name = inst_info['name']
-
-        # Instructions that need SIGNED immediates (offsets)
-        if inst_name in []:  # Load instructions need signed offsets
-            # Handle signed immediate (4-bit signed: -8 to +7)
-            if imm & 0x8:  # If MSB is 1, it's negative
-                signed_imm = imm - 16
-            else:
-                signed_imm = imm
-            final_imm = signed_imm
-        else:
-            # Instructions that use UNSIGNED immediates (ADDI, ANDI, ORI)
-            final_imm = imm  # Keep as unsigned (0-15)
+        final_imm = imm
             
         # Different assembly format for LW
         if inst_info["name"] == "LW":

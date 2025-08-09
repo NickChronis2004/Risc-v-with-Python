@@ -37,10 +37,11 @@ def check_tkinter():
         return False
 
 def check_risc_v_files():
-    """Check if all RISC-V component files exist"""
+    """Check if all RISC-V component files exist (resolve relative to src)."""
+    src_dir = os.path.dirname(os.path.abspath(__file__))
     required_files = [
         "ALU.py",
-        "RegisterFile.py", 
+        "RegisterFile.py",
         "Memory.py",
         "InstructionDecoder.py",
         "ControlUnit.py",
@@ -49,30 +50,31 @@ def check_risc_v_files():
         "ExceptionHandling.py",
         "interface.py",
         "SimpleLogging.py",
-        "LoggedMainCPU.py"
+        "LoggedMainCPU.py",
     ]
-    
+
     missing_files = []
     existing_files = []
-    
+
     for file in required_files:
-        if not os.path.exists(file):
+        path = os.path.join(src_dir, file)
+        if not os.path.exists(path):
             missing_files.append(file)
         else:
             existing_files.append(file)
-    
+
     if existing_files:
-        print(f"✅ Found {len(existing_files)} RISC-V component files:")
+        print(f"✅ Found {len(existing_files)} RISC-V component files in src/:")
         for file in existing_files:
             print(f"  ✓ {file}")
-    
+
     if missing_files:
         print(f"\n⚠️ Missing {len(missing_files)} RISC-V component files:")
         for file in missing_files:
             print(f"  ✗ {file}")
-        print("\nMake sure all your RISC-V Python files are in the same directory!")
+        print("\nMake sure all your RISC-V Python files are under the src/ directory")
         return False
-    
+
     print("✅ All RISC-V component files found")
     return True
 
@@ -84,7 +86,8 @@ def create_launcher():
         with open("run_risc_v_gui.bat", "w") as f:
             f.write("@echo off\n")
             f.write("echo Starting RISC-V GUI...\n")
-            f.write("python RiscV_GUI.py\n")
+            # Run the modern GUI entrypoint
+            f.write("python src\\interface.py\n")
             f.write("pause\n")
         print("✅ Created run_risc_v_gui.bat")
     
@@ -93,7 +96,7 @@ def create_launcher():
         with open("run_risc_v_gui.sh", "w") as f:
             f.write("#!/bin/bash\n")
             f.write("echo 'Starting RISC-V GUI...'\n")
-            f.write("python3 RiscV_GUI.py\n")
+            f.write("python3 src/interface.py\n")
         
         # Make executable
         os.chmod("run_risc_v_gui.sh", 0o755)
@@ -136,9 +139,9 @@ def main():
             all_success = False
     
     if all_success:
-        print("\n🎉 Setup completed successfully!")
-        print("\nTo run the RISC-V GUI:")
-        print("  python RiscV_GUI.py")
+    print("\n🎉 Setup completed successfully!")
+    print("\nTo run the RISC-V GUI:")
+    print("  python src/interface.py  # or: python ultimate_launcher.py --gui")
         
         # Create a launcher script
         print("\n📝 Creating launcher script...")
@@ -149,7 +152,7 @@ def main():
             print("  run_risc_v_gui.bat")
         else:
             print("  ./run_risc_v_gui.sh")
-        print("  or: python RiscV_GUI.py")
+        print("  or: python src/interface.py")
         
     else:
         print("\n❌ Some packages failed to install")

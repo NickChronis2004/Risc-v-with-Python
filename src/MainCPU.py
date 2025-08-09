@@ -201,13 +201,7 @@ class RiscVProcessor:
         rs1_value = self.register_file.read(decoded["rs1"])
         immediate = decoded["immediate"]
         
-        # For ADDI, treat immediate as unsigned for positive values
-        # This fixes the 4-bit signed issue where 10 becomes -6
-        # Read source register and immediate
-        rs1_value = self.register_file.read(decoded["rs1"])
-        immediate = decoded["immediate"]
-        
-        # Perform ALU operation
+        # Perform ALU operation with 4-bit unsigned immediates
         alu_result = self.alu.execute(rs1_value, immediate, control_signals["alu_operation"])
         
         # Write result to destination register

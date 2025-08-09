@@ -67,13 +67,21 @@ def main():
     # ΕΠΙΛΟΓΗ 1: Προσπάθησε να φορτώσεις από αρχείο
     # ========================================
     
-    possible_files = [ 
-    "src/examples/loop_test.asm",         
-    "src/examples/branch_test.asm",
-    "src/examples/calculator.asm",
-    "src/examples/print_test.asm",
-    "src/examples/my_program.asm",
-    "src/examples/factorial.asm"
+    # Try project-level Examples/ directory first, then src/Examples/
+    possible_files = [
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Examples', 'loop_test.asm'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Examples', 'branch_test.asm'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Examples', 'calculator.asm'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Examples', 'print_test.asm'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Examples', 'my_program.asm'),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Examples', 'factorial.asm'),
+        # Also consider src/Examples if present
+        os.path.join(os.path.dirname(__file__), 'Examples', 'loop_test.asm'),
+        os.path.join(os.path.dirname(__file__), 'Examples', 'branch_test.asm'),
+        os.path.join(os.path.dirname(__file__), 'Examples', 'calculator.asm'),
+        os.path.join(os.path.dirname(__file__), 'Examples', 'print_test.asm'),
+        os.path.join(os.path.dirname(__file__), 'Examples', 'my_program.asm'),
+        os.path.join(os.path.dirname(__file__), 'Examples', 'factorial.asm'),
     ]
     
     program_loaded = False

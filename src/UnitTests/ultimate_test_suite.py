@@ -19,8 +19,12 @@ Comprehensive testing suite που τρέχει όλα τα tests και validat
 import os
 
 import sys
-import codecs
-sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+try:
+    import codecs
+    if hasattr(sys.stdout, 'detach'):
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+except Exception:
+    pass
 import time
 import subprocess
 import importlib.util
