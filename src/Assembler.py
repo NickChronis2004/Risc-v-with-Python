@@ -243,7 +243,7 @@ class RiscVAssembler:
                 raise ValueError(f"JAL needs rd, label: {line}")
             
             rd = self._parse_register(parts[1])
-            offset = self._parse_branch_target(parts[2], address)
+            offset = self._parse_jump_target(parts[2], address)
             
             return self._encode_j_type(opcode, rd, offset)
         
@@ -298,15 +298,28 @@ class RiscVAssembler:
         return offset, rs1
     
     def _parse_branch_target(self, target: str, current_addr: int) -> int:
-        """Αναλύει branch target (label ή offset)"""
+        """Αναλύει branch target (label ή offset) για B-type (4-bit)
+
+        Συντονισμένο με την υλοποίηση CPU όπου το PC ενημερώνεται ως
+        pc = pc + offset (και παρακάμπτεται το αυτόματο increment στον ίδιο κύκλο).
+        Άρα offset = target_addr - current_addr.
+        """
         target = target.lower()
-        
+
         if target in self.labels:
             target_addr = self.labels[target]
-            offset = (target_addr - current_addr - 1) & 0xF
+            offset = (target_addr - current_addr) & 0xF
             return offset
         else:
             return int(target) & 0xF
+
+    def _parse_jump_target(self, target: str, current_addr: int) -> int:
+        """Αναλύει jump target (label ή offset) για J-type (8-bit)"""
+        t = target.lower()
+        if t in self.labels:
+            target_addr = self.labels[t]
+            return (target_addr - current_addr) & 0xFF
+        return int(target) & 0xFF
     
     def _encode_r_type(self, opcode: int, rd: int, rs1: int, rs2: int) -> int:
         """Κωδικοποίηση R-type: [4-bit opcode][4-bit rd][4-bit rs1][4-bit rs2]"""
@@ -427,8 +440,8 @@ def main():
     import sys
     
     if len(sys.argv) < 2:
-        print("Usage: python RiscV_Assembler.py <input.asm> [output_prefix]")
-        print("Example: python RiscV_Assembler.py program.asm program")
+        print("Usage: python Assembler.py <input.asm> [output_prefix]")
+        print("Example: python Assembler.py program.asm program")
         return
     
     input_file = sys.argv[1]

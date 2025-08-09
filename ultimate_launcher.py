@@ -376,9 +376,14 @@ class SystemLauncher:
         print(f"\n{Colors.OKCYAN}📊 Launching Monitoring Dashboard...{Colors.ENDC}")
         
         try:
+            target = get_gui_path('monitoring_dashboard.py')
+            if not os.path.exists(target):
+                print(f"{Colors.WARNING}⚠️  monitoring_dashboard.py not found ({target}){Colors.ENDC}")
+                print("Please add the dashboard script or disable this option.")
+                return
             subprocess.Popen([
                 sys.executable, 
-                get_gui_path('monitoring_dashboard.py')
+                target
             ])
             
             print(f"{Colors.OKGREEN}✅ Monitoring dashboard launched{Colors.ENDC}")
@@ -392,9 +397,14 @@ class SystemLauncher:
         print(f"\n{Colors.OKCYAN}🧪 Launching GUI Test Runner...{Colors.ENDC}")
         
         try:
+            target = get_gui_path('gui_test_scenarios.py')
+            if not os.path.exists(target):
+                print(f"{Colors.WARNING}⚠️  gui_test_scenarios.py not found ({target}){Colors.ENDC}")
+                print("Please add the GUI test scenarios script or disable this option.")
+                return
             subprocess.Popen([
                 sys.executable, 
-                get_gui_path('gui_test_scenarios.py')
+                target
             ])
             
             print(f"{Colors.OKGREEN}✅ GUI test runner launched{Colors.ENDC}")
@@ -812,13 +822,20 @@ class SystemLauncher:
         
         print(f"\n{Colors.OKGREEN}✅ All systems operational! Ready for launch! 🚀{Colors.ENDC}")
         
-        # Check if this is first run
-        if not Path('risc_v_system_initialized').exists():
+        # Check if this is first run (support both root and src markers)
+        root_marker = Path('risc_v_system_initialized')
+        src_marker = Path(__file__).parent / 'src' / 'risc_v_system_initialized'
+        if not (root_marker.exists() or src_marker.exists()):
             self.quick_start_wizard()
-            
-            # Create initialization marker
-            with open('risc_v_system_initialized', 'w') as f:
-                f.write(f"RISC-V System initialized on {time.strftime('%Y-%m-%d %H:%M:%S')}")
+
+            # Create initialization marker in project root
+            try:
+                with open(root_marker, 'w') as f:
+                    f.write(f"RISC-V System initialized on {time.strftime('%Y-%m-%d %H:%M:%S')}")
+            except Exception:
+                # Fallback to src marker if root not writable
+                with open(src_marker, 'w') as f:
+                    f.write(f"RISC-V System initialized on {time.strftime('%Y-%m-%d %H:%M:%S')}")
         
         # Show main menu
         self.show_main_menu()
