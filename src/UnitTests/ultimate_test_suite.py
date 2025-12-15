@@ -279,7 +279,7 @@ class MasterTestRunner:
                 beq x3, x4, success # Should branch
                 addi x5, x0, 1      # Should be skipped
             success:
-                addi x6, x0, 100    # x6 = 100
+                addi x6, x0, 12     # x6 = 12 (4-bit immediate max is 15)
                 halt
             """
             
@@ -311,8 +311,8 @@ class MasterTestRunner:
             if x4 != 15:
                 raise AssertionError(f"x4 should be 15, got {x4}")
             
-            if x6 != 100:
-                raise AssertionError(f"x6 should be 100, got {x6}")
+            if x6 != 12:
+                raise AssertionError(f"x6 should be 12, got {x6}")
             
             duration = time.time() - start_time
             details = f"Assembly: {len(machine_code)} instructions, Execution: {processor.cycle_count} cycles"
@@ -340,13 +340,12 @@ class MasterTestRunner:
             main:
                 addi x1, x0, 7
                 addi x2, x0, 3
-                
+                addi x7, x0, 1
             loop:
                 beq x1, x0, done
                 add x3, x3, x2
-                addi x1, x1, -1     # Using -1 as 15 in 4-bit
+                sub x1, x1, x7
                 bne x1, x0, loop
-                
             done:
                 sw x3, 5(x0)
                 halt
@@ -580,22 +579,27 @@ class MasterTestRunner:
             except ImportError:
                 modern_gui_available = False
             
-            # Test main GUI import
+            # Test main GUI import (try both RiscVGUI and EnhancedRiscVGUI)
             try:
                 from interface import RiscVGUI
                 main_gui_available = True
             except ImportError:
-                main_gui_available = False
-            
+                try:
+                    from interface import EnhancedRiscVGUI
+                    main_gui_available = True
+                except ImportError:
+                    main_gui_available = False
+
             components_available = sum([gui_available, modern_gui_available, main_gui_available])
-            
+
             duration = time.time() - start_time
-            
-            if components_available >= 2:  # At least basic GUI should work
+
+            # At least tkinter + main GUI should work (2/3)
+            if gui_available and main_gui_available:
                 details = f"Components: tkinter={gui_available}, customtkinter={modern_gui_available}, main_gui={main_gui_available}"
                 return TestResult("GUI Components", True, duration, details)
             else:
-                details = f"Insufficient GUI components available: {components_available}/3"
+                details = f"Insufficient GUI components available: {components_available}/3 (need tkinter + main_gui)"
                 return TestResult("GUI Components", False, duration, details)
         
         except Exception as e:
@@ -621,8 +625,15 @@ class MasterTestRunner:
             
             # Test if our GUI can be imported and initialized
             try:
-                from interface import RiscVGUI
-                # Don't actually run the GUI, just test creation
+                # Try to import the GUI class (RiscVGUI or EnhancedRiscVGUI)
+                try:
+                    from interface import RiscVGUI
+                    gui_class = RiscVGUI
+                except ImportError:
+                    from interface import EnhancedRiscVGUI
+                    gui_class = EnhancedRiscVGUI
+
+                # Don't actually run the GUI, just test that we can import it
                 gui_creatable = True
             except Exception:
                 gui_creatable = False

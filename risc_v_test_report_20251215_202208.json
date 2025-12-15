@@ -1,0 +1,156 @@
+{
+  "timestamp": "20251215_202208",
+  "summary": {
+    "total_tests": 14,
+    "passed_tests": 12,
+    "failed_tests": 2,
+    "success_rate": 85.71428571428571,
+    "total_duration": 0.27218055725097656
+  },
+  "categories": {
+    "unit_tests": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "success_rate": 100.0
+    },
+    "integration_tests": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "success_rate": 100.0
+    },
+    "performance_tests": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "success_rate": 100.0
+    },
+    "gui_tests": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "success_rate": 0.0
+    },
+    "workflow_tests": {
+      "total": 2,
+      "passed": 2,
+      "failed": 0,
+      "success_rate": 100.0
+    }
+  },
+  "detailed_results": [
+    {
+      "name": "RegisterFile Tests",
+      "passed": true,
+      "duration": 0.02602863311767578,
+      "details": "All tests passed",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.386532"
+    },
+    {
+      "name": "ALU Tests",
+      "passed": true,
+      "duration": 0.025184154510498047,
+      "details": "All tests passed",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.411752"
+    },
+    {
+      "name": "Memory Tests",
+      "passed": true,
+      "duration": 0.05181884765625,
+      "details": "All tests passed",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.463595"
+    },
+    {
+      "name": "Assembler Tests",
+      "passed": true,
+      "duration": 0.04781031608581543,
+      "details": "All tests passed",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.511427"
+    },
+    {
+      "name": "Complete Processor Workflow",
+      "passed": true,
+      "duration": 0.0066454410552978516,
+      "details": "Assembly: 9 instructions, Execution: 8 cycles",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.518098"
+    },
+    {
+      "name": "Assembler-Processor Pipeline",
+      "passed": true,
+      "duration": 0.014614105224609375,
+      "details": "Pipeline: ASM->Binary->Load->Execute, Result: 21",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.532732"
+    },
+    {
+      "name": "Memory System Integration",
+      "passed": true,
+      "duration": 3.62396240234375e-05,
+      "details": "IMem: 4 instructions, DMem: 3 operations",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.532800"
+    },
+    {
+      "name": "Execution Speed Benchmark",
+      "passed": true,
+      "duration": 0.00042748451232910156,
+      "details": "Instructions: 81, Speed: 218341 inst/s, 218341 cycles/s",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.533240"
+    },
+    {
+      "name": "Memory Performance",
+      "passed": true,
+      "duration": 0.003107309341430664,
+      "details": "Writes: 591330 ops/s, Reads: 709216 ops/s",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.536367"
+    },
+    {
+      "name": "Assembly Performance",
+      "passed": true,
+      "duration": 0.0016803741455078125,
+      "details": "Lines: 153, Speed: 126824 lines/s, Instructions: 151",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.538062"
+    },
+    {
+      "name": "GUI Components",
+      "passed": false,
+      "duration": 0.014905929565429688,
+      "details": "Insufficient GUI components available: 1/3",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.552991"
+    },
+    {
+      "name": "GUI Workflow",
+      "passed": false,
+      "duration": 0.03896188735961914,
+      "details": "GUI initialization failed",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.591971"
+    },
+    {
+      "name": "Development Workflow",
+      "passed": true,
+      "duration": 0.0028107166290283203,
+      "details": "Complete workflow: ASM->Binary->Hex->Load->Execute->Verify, Cycles: 29",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.596298"
+    },
+    {
+      "name": "Exception Workflow",
+      "passed": true,
+      "duration": 0.00043129920959472656,
+      "details": "Graceful error recovery: 4 cycles, final state: x1=10, x2=5",
+      "error": null,
+      "timestamp": "2025-12-15T20:22:08.596756"
+    }
+  ]
+}

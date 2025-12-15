@@ -148,11 +148,11 @@ class ALU:
         print("┌" + "─" * 50 + "┐")
         print("│" + " " * 20 + "ALU STATUS" + " " * 19 + "│")
         print("├" + "─" * 50 + "┤")
-        print(f"│ Last Result: 0x{self.last_result:04X} ({self.last_result:>5})      │")
-        print(f"│ Zero Flag:   {'✓' if self.zero_flag else '✗'}                        │")
-        print(f"│ Overflow:    {'✓' if self.overflow_flag else '✗'}                        │")
-        print(f"│ Negative:    {'✓' if self.negative_flag else '✗'}                        │")
-        print(f"│ Operations:  {self.operations_count:>5}                      │")
+        print(f"│ Last Result: 0x{self.last_result:04X} ({self.last_result:>5})  │")
+        print(f"│ Zero Flag:   {'✓' if self.zero_flag else '✗'}                 │")
+        print(f"│ Overflow:    {'✓' if self.overflow_flag else '✗'}             │")
+        print(f"│ Negative:    {'✓' if self.negative_flag else '✗'}             │")
+        print(f"│ Operations:  {self.operations_count:>5}                        │")
         print("└" + "─" * 50 + "┘")
     
     def display_history(self, last_n=5):
