@@ -37,6 +37,10 @@ class InstructionDecoder:
             
             # J-Type Instructions (Jump)
             0xC: {"name": "JAL",  "type": "J", "description": "Jump and Link"},
+
+            # Internal pseudo-instruction emitted by the assembler for ADDI with
+            # negative immediates. Positive ADDI keeps the existing unsigned range.
+            0xD: {"name": "SUBI", "type": "I", "description": "Subtract Immediate"},
             
             # Special Instructions
             0xE: {"name": "NOP",  "type": "Special", "description": "No Operation"},
@@ -136,6 +140,9 @@ class InstructionDecoder:
         if inst_info["name"] == "LW":
             assembly = f"lw x{rd}, {final_imm}(x{rs1})"
             offset = final_imm
+        elif inst_info["name"] == "SUBI":
+            assembly = f"addi x{rd}, x{rs1}, -{final_imm}"
+            offset = None
         else:
             assembly = f"{inst_info['name'].lower()} x{rd}, x{rs1}, {final_imm}"
             offset = None
@@ -252,6 +259,9 @@ class InstructionDecoder:
         """
         Decode Special instructions: NOP, HALT
         """
+        if instruction & 0x0FFF:
+            return self._create_invalid_instruction(instruction, opcode)
+
         assembly = inst_info["name"].lower()
         
         return {

@@ -21,6 +21,7 @@ except Exception:
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from Assembler import RiscVAssembler, BinaryLoader
+from MainCPU import RiscVProcessor
 
 
 class AssemblerTests:
@@ -378,6 +379,43 @@ class AssemblerTests:
         
         # Cleanup
         os.remove('test_abi.asm')
+
+    def test_negative_addi_execution(self):
+        """Test negative ADDI source operands execute as subtraction."""
+        print("Testing negative ADDI execution...")
+
+        test_code = """
+        addi x1, x0, 2
+        loop:
+            addi x1, x1, -1
+            bne x1, x0, loop
+            halt
+        """
+
+        assembler = RiscVAssembler()
+
+        with open('test_negative_addi.asm', 'w') as f:
+            f.write(test_code)
+
+        machine_code = assembler.assemble_file('test_negative_addi.asm')
+
+        if machine_code[1] != 0xD111:
+            raise AssertionError(f"Expected internal SUBI 0xD111, got 0x{machine_code[1]:04X}")
+
+        processor = RiscVProcessor(16, 16)
+        processor.load_program_direct(machine_code)
+        success = processor.run(max_cycles=20)
+
+        if not success or not processor.halted:
+            raise AssertionError("Loop with negative ADDI should terminate")
+
+        final_value = processor.register_file.read(1)
+        if final_value != 0:
+            raise AssertionError(f"x1 should be 0, got {final_value}")
+
+        print("   Negative ADDI decrements and loop terminates")
+
+        os.remove('test_negative_addi.asm')
     
     def run_all_tests(self):
         """Εκτελεί όλα τα tests"""
@@ -394,6 +432,7 @@ class AssemblerTests:
         self.run_test("Error Handling", self.test_error_handling)
         self.run_test("Complete Program", self.test_complete_program)
         self.run_test("ABI Register Names", self.test_abi_register_names)
+        self.run_test("Negative ADDI Execution", self.test_negative_addi_execution)
         
         # Εμφάνιση αποτελεσμάτων
         print("\n" + "=" * 60)
@@ -428,7 +467,8 @@ def run_individual_test(test_name: str):
         'hex': tests.test_hex_file_generation,
         'error': tests.test_error_handling,
         'complete': tests.test_complete_program,
-        'abi': tests.test_abi_register_names
+        'abi': tests.test_abi_register_names,
+        'negative-addi': tests.test_negative_addi_execution
     }
     
     if test_name.lower() in test_methods:

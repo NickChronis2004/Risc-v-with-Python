@@ -1,5 +1,19 @@
 import re
+import sys
 from typing import List, Dict, Optional, Tuple
+
+
+def _configure_console_encoding():
+    """Keep emoji/status output from crashing on non-UTF-8 Windows consoles."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding='utf-8', errors='replace')
+        except (AttributeError, ValueError):
+            pass
+
+
+_configure_console_encoding()
+
 
 class RiscVAssembler:
     """
@@ -202,6 +216,12 @@ class RiscVAssembler:
             
             rd = self._parse_register(parts[1])
             rs1 = self._parse_register(parts[2])
+            raw_imm = self._parse_integer(parts[3])
+
+            if opcode_str == 'ADDI' and raw_imm < 0:
+                imm = self._encode_negative_addi_immediate(raw_imm)
+                return self._encode_i_type(0xD, rd, rs1, imm)
+
             imm = self._parse_immediate(parts[3])
             
             return self._encode_i_type(opcode, rd, rs1, imm)
@@ -265,23 +285,27 @@ class RiscVAssembler:
     def _parse_immediate(self, imm_str: str) -> int:
         """Μετατρέπει immediate value με proper sign handling"""
         try:
-            if imm_str.startswith('0x'):
-                immediate = int(imm_str, 16) & 0xF
-            else:
-                immediate = int(imm_str)
-                
-                # Handle negative numbers for sign extension
-                if immediate < 0:
-                    # Convert to 4-bit two's complement
-                    immediate = (immediate + 16) & 0xF
-                else:
-                    # Positive numbers - just mask to 4-bit
-                    immediate = immediate & 0xF
-                    
-            return immediate
+            return self._parse_integer(imm_str) & 0xF
             
         except ValueError:
             raise ValueError(f"Invalid immediate value: {imm_str}")
+
+    def _parse_integer(self, value_str: str) -> int:
+        """Parse decimal or hex integer strings, preserving sign."""
+        value_str = value_str.strip().lower()
+
+        if value_str.startswith('-0x'):
+            return -int(value_str[3:], 16)
+        if value_str.startswith('0x'):
+            return int(value_str, 16)
+        return int(value_str)
+
+    def _encode_negative_addi_immediate(self, immediate: int) -> int:
+        """Encode ADDI with a negative immediate as internal SUBI."""
+        magnitude = abs(immediate)
+        if magnitude > 0xF:
+            raise ValueError(f"Negative ADDI immediate out of range: {immediate}")
+        return magnitude
     
     def _parse_memory_operand(self, operand: str) -> Tuple[int, int]:
         """Αναλύει memory operand όπως: 4(x2) ή (x2)"""

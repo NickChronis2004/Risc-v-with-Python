@@ -746,11 +746,14 @@ class SystemLauncher:
         print("Running a quick test to verify everything works...")
         
         try:
+            env = os.environ.copy()
+            env.setdefault('PYTHONIOENCODING', 'utf-8')
+
             result = subprocess.run([
                 sys.executable, 
                 get_test_path('master_test_runner.py'), 
                 '--quick'
-            ], capture_output=True, text=True, timeout=30)
+            ], capture_output=True, text=True, encoding='utf-8', errors='replace', env=env, timeout=30)
             
             if result.returncode == 0:
                 print(f"{Colors.OKGREEN}✅ Quick test passed! System is ready.{Colors.ENDC}")

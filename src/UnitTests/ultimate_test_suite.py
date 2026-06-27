@@ -231,11 +231,18 @@ class MasterTestRunner:
             if not os.path.exists(test_file):
                 return TestResult(test_name, False, 0, "Test file not found", FileNotFoundError(test_file))
             
+            env = os.environ.copy()
+            env.setdefault('PYTHONIOENCODING', 'utf-8')
+            env.setdefault('PYTHONDONTWRITEBYTECODE', '1')
+
             # Run the test file
             result = subprocess.run(
-                [sys.executable, test_file],
+                [sys.executable, '-B', test_file],
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
+                errors='replace',
+                env=env,
                 timeout=60  # 60 second timeout
             )
             
@@ -748,7 +755,7 @@ class MasterTestRunner:
             # Program with potential errors
             error_program = [
                 0x510A,  # ADDI x1, x0, 10  (valid)
-                0xDEAD,  # Invalid instruction
+                0xE123,  # Invalid instruction
                 0x5205,  # ADDI x2, x0, 5   (valid - should continue)
                 0xF000   # HALT
             ]

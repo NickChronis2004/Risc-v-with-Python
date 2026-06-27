@@ -172,6 +172,10 @@ class ALUTests:
         alu.execute(0xFFFF, 1, ALU.ALU_ADD)
         if not alu.overflow_flag:
             raise AssertionError("Overflow flag should be set for 0xFFFF + 1")
+
+        alu.execute(1, 1, ALU.ALU_SUB)
+        if alu.overflow_flag:
+            raise AssertionError("Overflow flag should clear after a non-overflow operation")
         
         # Test Negative Flag (MSB = 1)
         alu.execute(0x8000, 0, ALU.ALU_ADD)  # 0x8000 has MSB = 1

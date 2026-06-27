@@ -42,6 +42,7 @@ class ALU:
         # Εξασφαλίζουμε ότι οι είσοδοι είναι 16-bit
         input_a = input_a & 0xFFFF
         input_b = input_b & 0xFFFF
+        self.overflow_flag = False
         
         # Εκτέλεση της λειτουργίας
         if alu_control == self.ALU_ADD:

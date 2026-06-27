@@ -119,6 +119,18 @@ class ControlUnit:
                 "jump": False,
                 "pc_update": "increment"
             },
+            "SUBI": {
+                "alu_operation": ALU.ALU_SUB,
+                "alu_src_a": "register",
+                "alu_src_b": "immediate",
+                "reg_write_enable": True,
+                "reg_write_src": "alu",
+                "mem_read": False,
+                "mem_write": False,
+                "branch": False,
+                "jump": False,
+                "pc_update": "increment"
+            },
             "LW": {
                 "alu_operation": ALU.ALU_ADD,  # Calculate address: rs1 + offset
                 "alu_src_a": "register",       # rs1 (base address)

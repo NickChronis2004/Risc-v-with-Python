@@ -140,14 +140,15 @@ class UltimateTestSuite:
                 0x1003: 25,  # mem[3] = 25
                 0x1004: 30   # mem[4] = 30
             }
+
+            stats = processor.data_memory.get_statistics()
             
             for addr, expected in expected_memory.items():
-                actual = processor.data_memory.read_word(addr)
+                actual = processor.data_memory.memory[addr - processor.data_memory.base_address]
                 if actual != expected:
                     raise AssertionError(f"Memory[0x{addr:04X}]: expected {expected}, got {actual}")
             
             # Check memory statistics
-            stats = processor.data_memory.get_statistics()
             expected_reads = 4  # 4 LW instructions
             expected_writes = 5  # 5 SW instructions
             
@@ -183,7 +184,7 @@ class UltimateTestSuite:
             0x510A,  # ADDI x1, x0, 10  (valid)
             0x5205,  # ADDI x2, x0, 5   (valid)
             0x0312,  # ADD x3, x1, x2   (valid)
-            0xDEAD,  # Invalid instruction
+            0xE123,  # Invalid instruction
             0x520B,  # ADDI x2, x0, 11  (valid - should continue)
             0xF000   # HALT
         ]
@@ -289,7 +290,13 @@ class UltimateTestSuite:
             # Verify final result
             final_result = processor.data_memory.read_word(0x1000)
             # Expected: x3 should accumulate x2 (3) seven times = 21
-            expected_result = 7 * 3  # But due to our loop behavior, might be different
+            expected_result = 7 * 3
+
+            if not processor.halted:
+                raise AssertionError("Debug loop should halt before max step count")
+
+            if final_result != expected_result:
+                raise AssertionError(f"Expected final result {expected_result}, got {final_result}")
             
             return {
                 'steps': step_count,
@@ -451,6 +458,51 @@ class UltimateTestSuite:
         
         return results
     
+    def test_complete_workflow(self):
+        """Test end-to-end assembly, execution, and memory verification."""
+        print("Testing complete workflow...")
+
+        processor = RiscVProcessor(64, 64)
+        workflow_program = """
+        main:
+            addi x1, x0, 4
+            addi x2, x0, 0
+        loop:
+            add x2, x2, x1
+            addi x1, x1, -1
+            bne x1, x0, loop
+            sw x2, 0(x0)
+            halt
+        """
+
+        assembler = RiscVAssembler()
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.asm', delete=False) as f:
+            f.write(workflow_program)
+            temp_file = f.name
+
+        try:
+            machine_code = assembler.assemble_file(temp_file)
+            if not machine_code:
+                raise AssertionError("Workflow assembly failed")
+
+            processor.load_program_direct(machine_code)
+            success = processor.run(max_cycles=50)
+            if not success:
+                raise AssertionError("Workflow execution failed")
+
+            result = processor.data_memory.read_word(0x1000)
+            if result != 10:
+                raise AssertionError(f"Expected accumulated result 10, got {result}")
+
+            print("   Complete workflow assembled, executed, and verified")
+
+            return {
+                'instructions': len(machine_code),
+                'cycles': processor.cycle_count,
+                'result': result
+            }
+        finally:
+            os.unlink(temp_file)
     
     def run_all_tests(self):
         """Εκτελεί όλα τα tests"""
