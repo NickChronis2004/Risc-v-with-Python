@@ -14,10 +14,11 @@ Comprehensive real-world testing scenarios που προσομοιώνουν:
 """
 
 import sys
-import codecs
-sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
 import os
-sys.path.append('..')
+from test_utils import add_src_to_path, configure_utf8_stdio
+
+configure_utf8_stdio()
+add_src_to_path()
 
 import time
 import os
@@ -27,10 +28,6 @@ import random
 import json
 from typing import List, Dict, Any
 from dataclasses import dataclass
-
-# Add src to path
-sys.path.append('src')
-
 
 @dataclass
 class ScenarioResult:

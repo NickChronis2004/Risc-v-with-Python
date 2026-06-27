@@ -16,12 +16,43 @@ Ultimate RISC-V System Launcher 🚀
 
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent / "src"))  # Add src directory to path
 import os
 import subprocess
 import time
 import threading
 import argparse
+import tempfile
+
+ROOT_DIR = Path(__file__).resolve().parent
+SRC_DIR = ROOT_DIR / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+
+def python_env():
+    env = os.environ.copy()
+    env.setdefault('PYTHONIOENCODING', 'utf-8')
+    env.setdefault('PYTHONDONTWRITEBYTECODE', '1')
+    return env
+
+
+def run_python(args, capture_output=False, timeout=None):
+    return subprocess.run(
+        [sys.executable, '-B', *map(str, args)],
+        capture_output=capture_output,
+        text=True,
+        encoding='utf-8',
+        errors='replace',
+        env=python_env(),
+        timeout=timeout,
+    )
+
+
+def launch_python(script_path):
+    return subprocess.Popen(
+        [sys.executable, '-B', str(script_path)],
+        env=python_env(),
+    )
 
 
 class Colors:
@@ -250,11 +281,10 @@ class SystemLauncher:
         
         try:
             # Run master test runner with unit tests only
-            result = subprocess.run([
-                sys.executable, 
-                get_test_path('master_test_runner.py'), 
+            result = run_python([
+                get_test_path('master_test_runner.py'),
                 '--category', 'unit'
-            ], capture_output=False, text=True)
+            ])
             
             if result.returncode == 0:
                 print(f"{Colors.OKGREEN}✅ Unit tests completed successfully{Colors.ENDC}")
@@ -271,11 +301,10 @@ class SystemLauncher:
         print(f"\n{Colors.OKCYAN}🔗 Launching Integration Test Suite...{Colors.ENDC}")
         
         try:
-            result = subprocess.run([
-                sys.executable, 
-                get_test_path('master_test_runner.py'), 
+            result = run_python([
+                get_test_path('master_test_runner.py'),
                 '--category', 'integration'
-            ], capture_output=False, text=True)
+            ])
             
             if result.returncode == 0:
                 print(f"{Colors.OKGREEN}✅ Integration tests completed successfully{Colors.ENDC}")
@@ -290,11 +319,10 @@ class SystemLauncher:
         print(f"\n{Colors.OKCYAN}⚡ Launching Performance Test Suite...{Colors.ENDC}")
         
         try:
-            result = subprocess.run([
-                sys.executable, 
-                get_test_path('master_test_runner.py'), 
+            result = run_python([
+                get_test_path('master_test_runner.py'),
                 '--category', 'performance'
-            ], capture_output=False, text=True)
+            ])
             
             if result.returncode == 0:
                 print(f"{Colors.OKGREEN}✅ Performance tests completed successfully{Colors.ENDC}")
@@ -309,10 +337,7 @@ class SystemLauncher:
         print(f"\n{Colors.OKCYAN}🌍 Launching Real-World Scenario Testing...{Colors.ENDC}")
         
         try:
-            result = subprocess.run([
-                sys.executable, 
-                get_test_path('real_world_scenarios.py')
-            ], capture_output=False, text=True)
+            result = run_python([get_test_path('real_world_scenarios.py')])
             
             if result.returncode == 0:
                 print(f"{Colors.OKGREEN}✅ Real-world scenarios completed successfully{Colors.ENDC}")
@@ -334,10 +359,7 @@ class SystemLauncher:
             
             try:
                 # Run ultimate test suite
-                result = subprocess.run([
-                    sys.executable, 
-                    get_test_path('ultimate_test_suite.py')
-                ], capture_output=False, text=True)
+                result = run_python([get_test_path('ultimate_test_suite.py')])
                 
                 if result.returncode == 0:
                     print(f"{Colors.OKGREEN}🎉 ULTIMATE TEST SUITE: ALL SYSTEMS GO! 🚀{Colors.ENDC}")
@@ -360,10 +382,7 @@ class SystemLauncher:
         
         try:
             # Launch GUI in separate process
-            subprocess.Popen([
-                sys.executable, 
-                get_gui_path('interface.py')
-            ])
+            launch_python(get_gui_path('interface.py'))
             
             print(f"{Colors.OKGREEN}✅ Main GUI launched successfully{Colors.ENDC}")
             print("GUI is running in a separate window")
@@ -381,10 +400,7 @@ class SystemLauncher:
                 print(f"{Colors.WARNING}⚠️  monitoring_dashboard.py not found ({target}){Colors.ENDC}")
                 print("Please add the dashboard script or disable this option.")
                 return
-            subprocess.Popen([
-                sys.executable, 
-                target
-            ])
+            launch_python(target)
             
             print(f"{Colors.OKGREEN}✅ Monitoring dashboard launched{Colors.ENDC}")
             print("Dashboard is running in a separate window")
@@ -402,10 +418,7 @@ class SystemLauncher:
                 print(f"{Colors.WARNING}⚠️  gui_test_scenarios.py not found ({target}){Colors.ENDC}")
                 print("Please add the GUI test scenarios script or disable this option.")
                 return
-            subprocess.Popen([
-                sys.executable, 
-                target
-            ])
+            launch_python(target)
             
             print(f"{Colors.OKGREEN}✅ GUI test runner launched{Colors.ENDC}")
             print("Test runner is available in a separate window")
@@ -420,7 +433,6 @@ class SystemLauncher:
         print("-" * 50)
         
         try:
-            sys.path.append('src')
             from Assembler import RiscVAssembler
             from MainCPU import RiscVProcessor
             
@@ -484,11 +496,10 @@ class SystemLauncher:
             # Create temporary file with single instruction
             temp_program = f"{line}\nhalt"
             
-            with open('temp_interactive.asm', 'w') as f:
-                f.write(temp_program)
-            
-            machine_code = assembler.assemble_file('temp_interactive.asm')
-            os.remove('temp_interactive.asm')
+            with tempfile.TemporaryDirectory() as temp_dir:
+                asm_path = Path(temp_dir) / 'interactive.asm'
+                asm_path.write_text(temp_program, encoding='utf-8')
+                machine_code = assembler.assemble_file(str(asm_path))
             
             if machine_code:
                 print(f"   ✅ Assembled: 0x{machine_code[0]:04X}")
@@ -546,7 +557,6 @@ class SystemLauncher:
         print("Inspect internal state of RISC-V components")
         
         try:
-            sys.path.append('src')
             from MainCPU import RiscVProcessor
             
             processor = RiscVProcessor(32, 32)
@@ -616,13 +626,13 @@ class SystemLauncher:
                 halt
             """
             
-            with open('temp_perf_test.asm', 'w') as f:
-                f.write(test_program)
-            
-            start_time = time.time()
-            machine_code = assembler.assemble_file('temp_perf_test.asm')
-            asm_time = time.time() - start_time
-            os.remove('temp_perf_test.asm')
+            with tempfile.TemporaryDirectory() as temp_dir:
+                asm_path = Path(temp_dir) / 'perf_test.asm'
+                asm_path.write_text(test_program, encoding='utf-8')
+                
+                start_time = time.time()
+                machine_code = assembler.assemble_file(str(asm_path))
+                asm_time = time.time() - start_time
             
             print(f"\n⚡ PERFORMANCE METRICS")
             print(f"🏃 Memory Writes: ~{write_ops_per_sec:,.0f} ops/sec")
@@ -646,11 +656,10 @@ class SystemLauncher:
         
         try:
             # Run comprehensive testing and generate report
-            subprocess.run([
-                sys.executable, 
-                get_test_path('master_test_runner.py'), 
+            run_python([
+                get_test_path('master_test_runner.py'),
                 '--quick'
-            ], capture_output=False)
+            ])
             
             print(f"{Colors.OKGREEN}✅ System report generated{Colors.ENDC}")
             
@@ -746,14 +755,10 @@ class SystemLauncher:
         print("Running a quick test to verify everything works...")
         
         try:
-            env = os.environ.copy()
-            env.setdefault('PYTHONIOENCODING', 'utf-8')
-
-            result = subprocess.run([
-                sys.executable, 
-                get_test_path('master_test_runner.py'), 
+            result = run_python([
+                get_test_path('master_test_runner.py'),
                 '--quick'
-            ], capture_output=True, text=True, encoding='utf-8', errors='replace', env=env, timeout=30)
+            ], capture_output=True, timeout=30)
             
             if result.returncode == 0:
                 print(f"{Colors.OKGREEN}✅ Quick test passed! System is ready.{Colors.ENDC}")

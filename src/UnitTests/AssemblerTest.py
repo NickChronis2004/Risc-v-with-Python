@@ -10,15 +10,11 @@ Unit Tests για τον RISC-V Assembler
 
 import os
 import sys
-try:
-    import codecs
-    if hasattr(sys.stdout, 'detach'):
-        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
-except Exception:
-    pass
+from test_utils import add_src_to_path, configure_utf8_stdio
 
 # Προσθήκη του parent directory στο Python path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+configure_utf8_stdio()
+add_src_to_path()
 
 from Assembler import RiscVAssembler, BinaryLoader
 from MainCPU import RiscVProcessor

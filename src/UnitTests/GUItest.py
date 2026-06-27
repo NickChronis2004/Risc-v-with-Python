@@ -12,12 +12,10 @@ Real-time monitoring και debugging dashboard για το RISC-V simulator:
 - Visual performance graphs
 """
 
-import sys
-import codecs
-sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+from test_utils import add_src_to_path, configure_utf8_stdio
 
-import os
-sys.path.append('..')
+configure_utf8_stdio()
+add_src_to_path()
 
 import time
 import threading
@@ -26,10 +24,6 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import datetime
-
-# Add src to path
-sys.path.append('src')
-
 
 class ProcessorMonitor:
     """Real-time processor monitoring"""

@@ -17,14 +17,7 @@ Comprehensive testing suite που τρέχει όλα τα tests και validat
 """
 
 import os
-
 import sys
-try:
-    import codecs
-    if hasattr(sys.stdout, 'detach'):
-        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
-except Exception:
-    pass
 import time
 import subprocess
 import importlib.util
@@ -33,6 +26,11 @@ import json
 import datetime
 import threading
 import queue
+import tempfile
+
+from test_utils import configure_utf8_stdio
+
+configure_utf8_stdio()
 
 class Colors:
     """ANSI color codes για beautiful terminal output"""
@@ -291,11 +289,10 @@ class MasterTestRunner:
             """
             
             # Assembly
-            with open('temp_workflow_test.asm', 'w') as f:
-                f.write(test_program)
-            
-            machine_code = assembler.assemble_file('temp_workflow_test.asm')
-            os.remove('temp_workflow_test.asm')
+            with tempfile.TemporaryDirectory() as temp_dir:
+                asm_path = Path(temp_dir) / 'workflow_test.asm'
+                asm_path.write_text(test_program, encoding='utf-8')
+                machine_code = assembler.assemble_file(str(asm_path))
             
             if not machine_code:
                 raise AssertionError("Assembly failed")
@@ -359,17 +356,20 @@ class MasterTestRunner:
             """
             
             # Test complete pipeline: ASM -> Binary -> Load -> Execute
-            with open('temp_pipeline_test.asm', 'w') as f:
-                f.write(test_program)
-            
-            # Assembly
-            machine_code = assembler.assemble_file('temp_pipeline_test.asm')
-            
-            # Save to binary
-            assembler.save_binary_file('temp_pipeline_test.bin')
-            
-            # Load from binary
-            loaded_code = loader.load_binary_file('temp_pipeline_test.bin')
+            with tempfile.TemporaryDirectory() as temp_dir:
+                temp_path = Path(temp_dir)
+                asm_path = temp_path / 'pipeline_test.asm'
+                bin_path = temp_path / 'pipeline_test.bin'
+                asm_path.write_text(test_program, encoding='utf-8')
+                
+                # Assembly
+                machine_code = assembler.assemble_file(str(asm_path))
+                
+                # Save to binary
+                assembler.save_binary_file(str(bin_path))
+                
+                # Load from binary
+                loaded_code = loader.load_binary_file(str(bin_path))
             
             # Verify pipeline integrity
             if machine_code != loaded_code:
@@ -381,10 +381,6 @@ class MasterTestRunner:
             
             if not success:
                 raise AssertionError("Pipeline execution failed")
-            
-            # Cleanup
-            os.remove('temp_pipeline_test.asm')
-            os.remove('temp_pipeline_test.bin')
             
             duration = time.time() - start_time
             details = f"Pipeline: ASM->Binary->Load->Execute, Result: {processor.register_file.read(3)}"
@@ -544,14 +540,13 @@ class MasterTestRunner:
             program_text = "\n".join(large_program)
             
             # Assembly benchmark
-            with open('temp_asm_perf_test.asm', 'w') as f:
-                f.write(program_text)
-            
-            asm_start = time.time()
-            machine_code = assembler.assemble_file('temp_asm_perf_test.asm')
-            asm_time = time.time() - asm_start
-            
-            os.remove('temp_asm_perf_test.asm')
+            with tempfile.TemporaryDirectory() as temp_dir:
+                asm_path = Path(temp_dir) / 'asm_perf_test.asm'
+                asm_path.write_text(program_text, encoding='utf-8')
+                
+                asm_start = time.time()
+                machine_code = assembler.assemble_file(str(asm_path))
+                asm_time = time.time() - asm_start
             
             if not machine_code:
                 raise AssertionError("Assembly performance test failed")
@@ -700,18 +695,22 @@ class MasterTestRunner:
             
             # 2. Assembly
             assembler = RiscVAssembler()
-            with open('temp_dev_workflow.asm', 'w') as f:
-                f.write(fibonacci_program)
-            
-            machine_code = assembler.assemble_file('temp_dev_workflow.asm')
-            
-            # 3. Binary generation
-            assembler.save_binary_file('temp_dev_workflow.bin')
-            assembler.save_hex_file('temp_dev_workflow.hex')
-            
-            # 4. Load and execute
-            processor = RiscVProcessor(64, 64)
-            processor.instruction_memory.load_from_binary_file('temp_dev_workflow.bin')
+            with tempfile.TemporaryDirectory() as temp_dir:
+                temp_path = Path(temp_dir)
+                asm_path = temp_path / 'dev_workflow.asm'
+                bin_path = temp_path / 'dev_workflow.bin'
+                hex_path = temp_path / 'dev_workflow.hex'
+                asm_path.write_text(fibonacci_program, encoding='utf-8')
+                
+                machine_code = assembler.assemble_file(str(asm_path))
+                
+                # 3. Binary generation
+                assembler.save_binary_file(str(bin_path))
+                assembler.save_hex_file(str(hex_path))
+                
+                # 4. Load and execute
+                processor = RiscVProcessor(64, 64)
+                processor.instruction_memory.load_from_binary_file(str(bin_path))
             
             # 5. Execute with debugging
             success = processor.run(max_cycles=200)
@@ -726,11 +725,6 @@ class MasterTestRunner:
                 actual = processor.data_memory.read_word(0x1000 + i)
                 if actual != expected_fib[i]:
                     raise AssertionError(f"Fibonacci({i}): expected {expected_fib[i]}, got {actual}")
-            
-            # 7. Cleanup
-            os.remove('temp_dev_workflow.asm')
-            os.remove('temp_dev_workflow.bin')
-            os.remove('temp_dev_workflow.hex')
             
             duration = time.time() - start_time
             details = f"Complete workflow: ASM->Binary->Hex->Load->Execute->Verify, Cycles: {processor.cycle_count}"
