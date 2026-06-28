@@ -370,7 +370,7 @@ def demo_instruction_decoder():
         (0xA341, "BEQ x3, x4, 1"),
         (0xE000, "NOP"),
         (0xF000, "HALT"),
-        (0xD000, "Invalid instruction")  # Unknown opcode
+        (0xD000, "subi x0, x0, 0")       # SUBI pseudo-instruction (negative ADDI)
     ]
     
     print(f"\n🔍 Decoding {len(test_instructions)} test instructions:")

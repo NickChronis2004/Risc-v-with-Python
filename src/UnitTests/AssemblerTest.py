@@ -8,8 +8,9 @@ Unit Tests για τον RISC-V Assembler
 - Test complete workflow
 """
 
-import os
 import sys
+import tempfile
+from pathlib import Path
 from test_utils import add_src_to_path, configure_utf8_stdio
 
 # Προσθήκη του parent directory στο Python path
@@ -27,6 +28,45 @@ class AssemblerTests:
         self.test_count = 0
         self.passed_tests = 0
         self.failed_tests = 0
+
+    def _write_temp_asm(self, temp_dir, filename, content):
+        asm_path = Path(temp_dir) / filename
+        asm_path.write_text(content, encoding='utf-8')
+        return asm_path
+
+    def _assemble_temp_asm(self, assembler, filename, content):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, filename, content)
+            return assembler.assemble_file(str(asm_path))
+
+    def _binary_roundtrip(self, assembler, content):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, 'test_binary.asm', content)
+            bin_path = Path(temp_dir) / 'test_binary.bin'
+            original_code = assembler.assemble_file(str(asm_path))
+            assembler.save_binary_file(str(bin_path))
+            loader = BinaryLoader()
+            return original_code, loader.load_binary_file(str(bin_path))
+
+    def _generate_hex_content(self, assembler, content):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, 'test_hex.asm', content)
+            hex_path = Path(temp_dir) / 'test_hex.hex'
+            assembler.assemble_file(str(asm_path))
+            assembler.save_hex_file(str(hex_path))
+            if not hex_path.exists():
+                raise AssertionError("Hex file was not created")
+            return hex_path.read_text(encoding='utf-8')
+
+    def _compile_and_save_outputs(self, assembler, content):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, 'test_complete.asm', content)
+            bin_path = Path(temp_dir) / 'test_complete.bin'
+            hex_path = Path(temp_dir) / 'test_complete.hex'
+            machine_code = assembler.assemble_file(str(asm_path))
+            assembler.save_binary_file(str(bin_path))
+            assembler.save_hex_file(str(hex_path))
+            return machine_code
     
     def run_test(self, test_name: str, test_func):
         """Εκτελεί ένα test"""
@@ -61,11 +101,9 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_basic.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        machine_code = assembler.assemble_file('test_basic.asm')
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, 'test_basic.asm', test_code)
+            machine_code = assembler.assemble_file(str(asm_path))
         
         # Έλεγχος αποτελεσμάτων
         expected_instructions = 7
@@ -80,9 +118,6 @@ class AssemblerTests:
             raise AssertionError(f"Expected 0x0312, got 0x{machine_code[2]:04X}")
         
         print(f"   ✓ Generated {len(machine_code)} instructions correctly")
-        
-        # Cleanup
-        os.remove('test_basic.asm')
     
     def test_labels_and_branches(self):
         """Test labels και branch εντολών"""
@@ -103,11 +138,9 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_labels.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        machine_code = assembler.assemble_file('test_labels.asm')
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, 'test_labels.asm', test_code)
+            machine_code = assembler.assemble_file(str(asm_path))
         
         # Έλεγχος labels
         if 'main' not in assembler.labels:
@@ -124,9 +157,6 @@ class AssemblerTests:
         
         print(f"   ✓ Labels found: {assembler.labels}")
         print(f"   ✓ Generated {len(machine_code)} instructions")
-        
-        # Cleanup
-        os.remove('test_labels.asm')
     
     def test_memory_operations(self):
         """Test memory operations (LW/SW)"""
@@ -144,11 +174,9 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_memory.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        machine_code = assembler.assemble_file('test_memory.asm')
+        with tempfile.TemporaryDirectory() as temp_dir:
+            asm_path = self._write_temp_asm(temp_dir, 'test_memory.asm', test_code)
+            machine_code = assembler.assemble_file(str(asm_path))
         
         # Έλεγχος εντολών
         if len(machine_code) != 5:
@@ -165,9 +193,6 @@ class AssemblerTests:
             raise AssertionError(f"LW instruction opcode should be 0x8, got 0x{lw_instruction >> 12:X}")
         
         print(f"   ✓ Memory operations encoded correctly")
-        
-        # Cleanup
-        os.remove('test_memory.asm')
     
     def test_binary_file_generation(self):
         """Test binary file generation και loading"""
@@ -184,18 +209,7 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_binary.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        original_code = assembler.assemble_file('test_binary.asm')
-        
-        # Αποθήκευση σε binary
-        assembler.save_binary_file('test_binary.bin')
-        
-        # Φόρτωση από binary
-        loader = BinaryLoader()
-        loaded_code = loader.load_binary_file('test_binary.bin')
+        original_code, loaded_code = self._binary_roundtrip(assembler, test_code)
         
         # Σύγκριση
         if len(original_code) != len(loaded_code):
@@ -207,10 +221,6 @@ class AssemblerTests:
         
         print(f"   ✓ Binary file saved and loaded correctly")
         print(f"   ✓ {len(original_code)} instructions verified")
-        
-        # Cleanup
-        os.remove('test_binary.asm')
-        os.remove('test_binary.bin')
     
     def test_hex_file_generation(self):
         """Test hex file generation"""
@@ -226,31 +236,12 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_hex.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        machine_code = assembler.assemble_file('test_hex.asm')
-        
-        # Αποθήκευση σε hex
-        assembler.save_hex_file('test_hex.hex')
-        
-        # Έλεγχος ότι το hex αρχείο δημιουργήθηκε
-        if not os.path.exists('test_hex.hex'):
-            raise AssertionError("Hex file was not created")
-        
-        # Έλεγχος περιεχομένου hex αρχείου
-        with open('test_hex.hex', 'r') as f:
-            content = f.read()
+        content = self._generate_hex_content(assembler, test_code)
         
         if '5101' not in content:  # addi x1, x0, 1 → 0x5101
             raise AssertionError("Expected instruction not found in hex file")
         
         print(f"   ✓ Hex file created and contains correct data")
-        
-        # Cleanup
-        os.remove('test_hex.asm')
-        os.remove('test_hex.hex')
     
     def test_error_handling(self):
         """Test error handling"""
@@ -270,18 +261,12 @@ class AssemblerTests:
         invalid_instruction x1, x2, x3
         """
         
-        with open('test_invalid.asm', 'w') as f:
-            f.write(invalid_code)
-        
-        machine_code = assembler.assemble_file('test_invalid.asm')
+        machine_code = self._assemble_temp_asm(assembler, 'test_invalid.asm', invalid_code)
         
         if len(machine_code) != 0:
             raise AssertionError("Should have produced no valid instructions")
         
         print("   ✓ Invalid instruction handling works")
-        
-        # Cleanup
-        os.remove('test_invalid.asm')
     
     def test_complete_program(self):
         """Test πλήρους προγράμματος"""
@@ -309,11 +294,7 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_complete.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        machine_code = assembler.assemble_file('test_complete.asm')
+        machine_code = self._compile_and_save_outputs(assembler, test_code)
         
         # Έλεγχος ότι το πρόγραμμα compiled
         if len(machine_code) == 0:
@@ -329,16 +310,7 @@ class AssemblerTests:
         print(f"   ✓ {len(machine_code)} instructions generated")
         print(f"   ✓ Labels: {assembler.labels}")
         
-        # Αποθήκευση αρχείων
-        assembler.save_binary_file('test_complete.bin')
-        assembler.save_hex_file('test_complete.hex')
-        
         print(f"   ✓ Output files generated")
-        
-        # Cleanup
-        os.remove('test_complete.asm')
-        os.remove('test_complete.bin')
-        os.remove('test_complete.hex')
     
     def test_abi_register_names(self):
         """Test ABI register names"""
@@ -356,11 +328,7 @@ class AssemblerTests:
         assembler = RiscVAssembler()
         
         # Αποθήκευση test αρχείου
-        with open('test_abi.asm', 'w') as f:
-            f.write(test_code)
-        
-        # Assembly
-        machine_code = assembler.assemble_file('test_abi.asm')
+        machine_code = self._assemble_temp_asm(assembler, 'test_abi.asm', test_code)
         
         # Έλεγχος ότι τα ABI names μετατράπηκαν σωστά
         if len(machine_code) != 5:
@@ -372,9 +340,6 @@ class AssemblerTests:
             raise AssertionError(f"Expected 0x5101, got 0x{first_instruction:04X}")
         
         print(f"   ✓ ABI register names work correctly")
-        
-        # Cleanup
-        os.remove('test_abi.asm')
 
     def test_negative_addi_execution(self):
         """Test negative ADDI source operands execute as subtraction."""
@@ -390,10 +355,7 @@ class AssemblerTests:
 
         assembler = RiscVAssembler()
 
-        with open('test_negative_addi.asm', 'w') as f:
-            f.write(test_code)
-
-        machine_code = assembler.assemble_file('test_negative_addi.asm')
+        machine_code = self._assemble_temp_asm(assembler, 'test_negative_addi.asm', test_code)
 
         if machine_code[1] != 0xD111:
             raise AssertionError(f"Expected internal SUBI 0xD111, got 0x{machine_code[1]:04X}")
@@ -411,8 +373,6 @@ class AssemblerTests:
 
         print("   Negative ADDI decrements and loop terminates")
 
-        os.remove('test_negative_addi.asm')
-    
     def run_all_tests(self):
         """Εκτελεί όλα τα tests"""
         print("=" * 60)
